@@ -1,12 +1,27 @@
 /* #548722 #303332 #9aba10 */
-
+html, body , html body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: Tahoma, Verdana, sans-serif;
+    background: #eeee;
+    color: #303332;
+}
 /* Основа чата */
-#chat {}
+#wchat_app {
+    background:#fefefe;
+    max-width: 1024px;
+    margin: auto;
+    height: 90%;
+    border: 1px solid #ddd;
+}
 
 /* Заголовок */
 header {
-    background: #eee;
+    background: #ddd;
     padding: 5px 10px;
+    width: inherit;
 }
 
 /* Логотип */
@@ -14,7 +29,7 @@ header {
     display: inline;
 }
 #logo img {
-    height: 50px;
+    height: 40px;
 }
 
 /* Верхнее меню */
@@ -24,11 +39,11 @@ header {
 }
 #menu ul{
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
 }
 #menu ul li{
     display: list-item;
-    padding: 16px 15px;
+    padding: 13px 15px;
 }
 #menu ul li a {
     text-decoration: none;
@@ -36,9 +51,96 @@ header {
 }
 #menu ul li:hover a{
     color: #548722;
+    cursor: pointer;
 }
 #menu ul li.selected{
     color: #548722;
     text-decoration: underline;
 }
 
+/* content */
+#content {
+    width: 100%;
+    height: 100%;
+}
+
+#contact_list {
+    width: 300px;
+    float: left;
+    border-right: #ddd 1px solid;
+    height: 100%;
+}
+#search {
+    padding: 10px;
+}
+#searchfield {
+    background: #efefef;
+    padding: 10px;
+    display: flex;
+}
+#searchfield .textfield {
+    border: none;
+    background-color: transparent;
+    display: list-item;
+    margin: 0 10px;
+    width: 240px;
+}
+#searchfield .icon{
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    display: list-item;
+}
+#searchfield .icon:hover {
+    color: #548722;
+    cursor: pointer;
+}
+#searchfield .icon:focus {
+    color: #9aba10;
+}
+#searchfield .icon:disabled,
+#searchfield .icon.disabled{
+    color: #ccc;
+}
+
+.contact {
+    display: flex;
+}
+.contact:hover {
+    background: #eee;
+    cursor: pointer;
+}
+.contact .icon,
+.contact .info,
+.contact .time{
+    margin: 10px;
+}
+.contact .icon .photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.contact .info {
+    width: 145px;
+}
+.contact .info p {
+    margin: 5px;
+}
+.contact .info .username {
+    font-weight: bold;
+}
+.contact .info .lastmessage {
+    font-size: smaller;
+}
+.contact .time {
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+
+
+#chat {
+    max-width: 724px;
+    float: right;
+}
