@@ -1,0 +1,44 @@
+/* #548722 #303332 #9aba10 */
+
+/* Основа чата */
+#chat {}
+
+/* Заголовок */
+header {
+    background: #eee;
+    padding: 5px 10px;
+}
+
+/* Логотип */
+#logo {
+    display: inline;
+}
+#logo img {
+    height: 50px;
+}
+
+/* Верхнее меню */
+#menu {
+    display: inline;
+    float: right;
+}
+#menu ul{
+    display: flex;
+    font-size: 18px;
+}
+#menu ul li{
+    display: list-item;
+    padding: 16px 15px;
+}
+#menu ul li a {
+    text-decoration: none;
+    color: #303332;
+}
+#menu ul li:hover a{
+    color: #548722;
+}
+#menu ul li.selected{
+    color: #548722;
+    text-decoration: underline;
+}
+

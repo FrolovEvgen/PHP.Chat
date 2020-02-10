@@ -1,0 +1,1 @@
+<!DOCTYPE html><html><head><script>location.replace("http://<?php print($_SERVER['HTTP_HOST']); ?>");</script><noscript><meta http-equiv="Refresh" content="0; URL=http://<?php print($_SERVER['HTTP_HOST']); ?>"></noscript></head><body>Relocation to: http://<?php print($_SERVER['HTTP_HOST']); ?>;</body></html>
