@@ -86,6 +86,258 @@ include_once('init.php');
                         </div>
                     </div>
                 </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user1.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Peter Parker</p>
+                            <p class="lastmessage">Hello!</p>
+                        </div>
+                        <div class="time">
+                            <p>09:10</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact">
+                        <div class="icon">
+                            <img class="photo" src="img/user2.jpg">
+                        </div>
+                        <div class="info">
+                            <p class="username">Sten Gordon</p>
+                            <p class="lastmessage">Hay you!!!</p>
+                        </div>
+                        <div class="time">
+                            <p>23:35</p>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         <div id="chat">
