@@ -1,15 +1,24 @@
-/* #548722 #303332 #9aba10 */
+@charset "UTF-8";
+/*****************************************************************************
+ * Стили страницы.
+ *****************************************************************************/
+/* Занять всю высоту и ширину окна. */
 html, body , html body {
     width: 100%;
     height: 100%;
 }
+/* Общие стили страницы. */
 body {
     font-family: Tahoma, Verdana, sans-serif;
     background: #eeee;
     color: #303332;
     overflow: hidden;
 }
-/* Основа чата */
+
+/*****************************************************************************
+ * Стили приложения.
+ *****************************************************************************/
+/* Основа чата. */
 #wchat_app {
     background:#fefefe;
     max-width: 1024px;
@@ -18,30 +27,33 @@ body {
     border: 1px solid #ddd;
 }
 
-/* Заголовок */
+/*****************************************************************************
+ * Стили заголовка приложения.
+ *****************************************************************************/
+/* Заголовок. */
 header {
     background: #ddd;
     padding: 5px 10px;
     width: inherit;
 }
-
-/* Логотип */
+/* Логотип. */
 #logo {
     display: inline;
 }
 #logo img {
     height: 40px;
 }
-
-/* Верхнее меню */
+/* Верхнее меню. */
 #menu {
     display: inline;
     float: right;
 }
+/* Обертка списка пунктов.. */
 #menu ul{
     display: flex;
     font-size: 16px;
 }
+/* Пункт меню. */
 #menu ul li{
     display: list-item;
     padding: 13px 15px;
@@ -50,98 +62,97 @@ header {
     text-decoration: none;
     color: #303332;
 }
+/* Пункт меню при наведении мыши. */
 #menu ul li:hover a{
     color: #548722;
     cursor: pointer;
 }
+/* Выбраный пункт меню. */
 #menu ul li.selected{
     color: #548722;
     text-decoration: underline;
 }
 
-/* content */
+/*****************************************************************************
+ * Стили содержимого чата.
+ *****************************************************************************/
+/* Обертка сождержимого чата. */
 #content {
     height: calc(100% - 60px);
 }
 
+/*****************************************************************************
+ * Стили списка контактов и поиска.
+ *****************************************************************************/
+/* Обертка списка контактов. */
 #contact_list {
     width: 300px;
     float: left;
     border-right: #ddd 1px solid;
     height: 100%;
 }
+/* Обертка поля поиска. */
 #search {
     padding: 10px;
+    background: #eee;
+    border-bottom: #ddd 1px solid;
 }
-#searchfield {
-    background: #efefef;
-    padding: 10px;
-    display: flex;
-}
-#searchfield .textfield {
-    border: none;
-    background-color: transparent;
-    display: list-item;
-    margin: 0 10px;
-    width: 240px;
-}
-#searchfield .icon{
-    background-color: transparent;
-    border: none;
-    font-weight: bold;
-    display: list-item;
-}
-#searchfield .icon:hover {
-    color: #548722;
-    cursor: pointer;
-}
-#searchfield .icon:focus {
-    color: #9aba10;
-}
-#searchfield .icon:disabled,
-#searchfield .icon.disabled{
-    color: #ccc;
-}
-
+/* Обертка списка контактов. */
 #contacts {
     overflow-y: scroll;
     height: calc(100% - 50px);
 }
+/* Обертка контакта. */
 #contacts .contact {
     display: flex;
 }
+/* Обертка контакта при наведении мыши. */
 #contacts .contact:hover {
     background: #eee;
     cursor: pointer;
 }
+/* Общие настройки элементов контакта. */
 #contacts .contact .icon,
 #contacts .contact .info,
 #contacts .contact .time {
     margin: 10px;
 }
+/* Фото контакта */
 #contacts .contact .icon .photo {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     overflow: hidden;
 }
+/* Информация о контакте. */
 #contacts .contact .info {
     width: 145px;
 }
+/* Общие настройки элементов контакта. */
 #contacts .contact .info p {
     margin: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+/* Имя пользователя. */
 #contacts contact .info .username {
     font-weight: bold;
 }
+/* Последнее сообщение. */
 #contacts .contact .info .lastmessage {
     font-size: smaller;
 }
+/* Время последнего сообщения. */
 #contacts .contact .time {
     font-size: 12px;
     margin-top: 20px;
 }
 
+/*****************************************************************************
+ * Стили чата.
+ *****************************************************************************/
+/* Обертка чата. */
 #chat {
     max-width: 723px;
     width: calc(100% - 301px);
@@ -150,15 +161,20 @@ header {
     height: 100%;
 }
 
+/*****************************************************************************
+ * Стили отображаемых сообщений.
+ *****************************************************************************/
+/* Контейнер списка сообщений. */
 #chat #messages {
     display: block;
     overflow-y: scroll;
     height: calc(100% - 100px);
 }
+/* Контейнер сообщения. */
 #messages .message {
     padding: 5px 0;
 }
-
+/* Обертка иконки пользователя. */
 #messages .message .icon {
     width: 50px;
     height: 50px;
@@ -166,12 +182,34 @@ header {
     display: inline-block;
     vertical-align: top;
 }
+/* Иконка пользователя. */
+#messages .message .icon .photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+/* Обертка сообщения. */
 #messages .message .info {
     margin: 10px 5px;
     width: calc(100% - 140px);
     display: inline-block;
     vertical-align: top;
 }
+/* Пимя пользователя. */
+#messages .message .info .username {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+/* Текущее сообщение. */
+#messages .message .info .currentmessage {
+    font-size: 14px;
+    margin: 5px 0;
+    text-indent: 1em;
+    text-align: justify;
+}
+/* Время отправки сообщения. */
 #messages .message .time {
     margin: 10px 5px;
     display: inline-block;
@@ -179,20 +217,137 @@ header {
     font-size: 10px;
     font-weight: bold;
 }
-#messages .message .icon .photo {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
+
+/*****************************************************************************
+ * Стили поля управления.
+ *****************************************************************************/
+/* Общее поле  управления. */
+#chat #controls {
+    display: block;
+    padding: 10px;
+    background: #eee;
+    border-top: #ddd 1px solid;
 }
-#messages .message .info .username {
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 14px;
+#controls #format {
+    display: flex;
+    padding: 10px;
 }
-#messages .message .info .currentmessage {
-    font-size: 14px;
-    margin: 5px 0;
-    text-indent: 1em;
-    text-align: justify;
+#format #colorformat,
+#format #textformat {
+    padding: 0 10px;
+}
+/*****************************************************************************
+ * Стили текстового поля.
+ *****************************************************************************/
+/* Обертка вокруг поля. */
+.textinput {
+    display: flex;
+    border: 1px #bbb solid;
+}
+/* Текстового поле. */
+.textinput .textfield {
+    width: 100%;
+    margin: 0 2px;
+    border: none;
+    outline: 0;
+    background: transparent;
+    color: #303332;
+    padding: 0 5px;
+}
+/* Выбаное текстовое поле. */
+.textinput .textfield:focus,
+.textinput .textfield:active {
+    background: #fefefe;
+    color: #000;
+}
+/*****************************************************************************
+ * Кнопки.
+ *****************************************************************************/
+.squarebutton {
+    width: 30px;
+    height: 30px;
+    outline: 0;
+    padding: 7px;
+}
+/* Скрытая кнопка. */
+.squarebutton.hidden {
+    background: none !important;
+    border: none !important;
+    cursor: default !important;
+}
+.squarebutton:hover {
+    cursor: pointer;
+}
+/*****************************************************************************
+ * Кнопки с цветами.
+ *****************************************************************************/
+.squarebutton.selected,
+.squarebutton:active {
+    border: #fff 1px solid;
+}
+.squarebutton.selected::after,
+.squarebutton:active::after{
+    content: "+";
+    color: #eee;
+}
+
+.squarebutton.black {
+    background: black;
+}
+.squarebutton.red {
+    background: maroon;
+}
+.squarebutton.green {
+    background: darkgreen;
+}
+.squarebutton.blue {
+    background: midnightblue;
+}
+    /*****************************************************************************
+     * Кнопки с иконками.
+     *****************************************************************************/
+/* Общие установки для кнопки.*/
+.iconbutton {
+    background: url('../img/buttons.png') no-repeat;
+    background-position-x: 0;
+    border: none;
+}
+/* Кнопка при наведении. */
+.iconbutton:hover {
+    background-position-x: -30px;
+}
+/* Нажатая кнопка. */
+.iconbutton:active,
+.iconbutton.selected{
+    background-position-x: -60px;
+    border: none;
+}
+/* Деактивированная кнопка. */
+.iconbutton:disabled,
+.iconbutton.disabled{
+    background-position-x: -90px;
+}
+/* Кнопка подчеркнутого текста. */
+.iconbutton.underline{
+    background-position-y: 0;
+}
+/* Кнопка наклонного текста. */
+.iconbutton.italic{
+    background-position-y: -30px;
+}
+/* Кнопка отмены. */
+.iconbutton.cancel{
+    background-position-y: -60px;
+}
+/* Кнопка жирного текста. */
+.iconbutton.bold{
+    background-position-y: -90px;
+}
+/* Кнопка поиска. */
+.iconbutton.search{
+    background-position-y: -120px;
+}
+/* Кнопка отправки текста. */
+.iconbutton.send{
+    background-position-y: -150px;
 }

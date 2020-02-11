@@ -33,10 +33,10 @@
             <div id="content">
                 <div id="contact_list">
                     <div id="search">
-                        <div id="searchfield">
-                            <button class="icon clear">X</button>
+                        <div id="searchfield" class="textinput">
+                            <button class="squarebutton iconbutton cancel hidden">&nbsp;</button>
                             <input class="textfield" type="text" name="text">
-                            <button class="icon search">+</button>
+                            <button class="squarebutton iconbutton search">&nbsp;</button>
                         </div>
                     </div>
                     <ul id="contacts">
@@ -466,7 +466,24 @@
                         </div>
                     </div>
                     <div id="controls">
-
+                        <div id="fields" class="textinput">
+                            <button class="squarebutton iconbutton cancel hidden">&nbsp;</button>
+                            <input type="text" name="newmessage" class="textfield">
+                            <button class="squarebutton iconbutton send">&nbsp;</button>
+                        </div>
+                        <div id="format">
+                            <div id="colorformat">
+                                <button class="squarebutton black selected"></button>
+                                <button class="squarebutton red"></button>
+                                <button class="squarebutton green"></button>
+                                <button class="squarebutton blue"></button>
+                            </div>
+                            <div id="textformat">
+                                <button class="squarebutton iconbutton bold">&nbsp;</button>
+                                <button class="squarebutton iconbutton italic">&nbsp;</button>
+                                <button class="squarebutton iconbutton underline">&nbsp;</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
