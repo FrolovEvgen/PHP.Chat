@@ -23,15 +23,3 @@ define('ENGINE', 'core');
 
 /** Директория сайта */
 define('LOCAL', 'www');
-
-/** Директория с блоками */
-define('BLOCKS', 'blocks');
-
-/** Директория с классами */
-define('CLASSES', 'classes');
-
-/** Директория с шаблонами */
-define('TEMPLATES', 'templates');
-
-/** Имя файла отладочной информации */
-define('LOG_FILENAME', 'common');

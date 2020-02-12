@@ -265,6 +265,7 @@ header {
 /*****************************************************************************
  * Кнопки.
  *****************************************************************************/
+/* Стиль "квадратной" кнопки 30х30. */
 .squarebutton {
     width: 30px;
     height: 30px;
@@ -277,9 +278,11 @@ header {
     border: none !important;
     cursor: default !important;
 }
+/* Кнопка при наведении мышью. */
 .squarebutton:hover {
     cursor: pointer;
 }
+/* Кнопка с текстом внутри. */
 .textbutton {
     display: block;
     font-weight: 400;
@@ -297,33 +300,39 @@ header {
     margin: 20px auto;
     outline: 0;
 }
+/* Кнопка с текстом внутри. */
 .textbutton:hover {
     background-color: #548722;
     border-color: greenyellow;
 }
+
 /*****************************************************************************
  * Кнопки с цветами.
  *****************************************************************************/
-.squarebutton.selected,
-.squarebutton:active {
+/* Выбраная/активная кнопка. */
+.colorbutton.selected,
+.colorbutton:active {
     border: #fff 1px solid;
 }
-.squarebutton.selected::after,
-.squarebutton:active::after{
+.colorbutton.selected::after,
+.colorbutton:active::after{
     content: "+";
     color: #eee;
 }
-
-.squarebutton.black {
+/* Черная кнопка. */
+.colorbutton.black {
     background: black;
 }
-.squarebutton.red {
+/* Красная кнопка. */
+.colorbutton.red {
     background: maroon;
 }
-.squarebutton.green {
+/* Зеленая кнопка. */
+.colorbutton.green {
     background: darkgreen;
 }
-.squarebutton.blue {
+/* Синяя кнопка. */
+.colorbutton.blue {
     background: midnightblue;
 }
 
@@ -379,6 +388,7 @@ header {
 /*****************************************************************************
  * Стили Модальных окон
  *****************************************************************************/
+/* Стиль для модальных окон. */
 .modal {
     width: inherit;
     height: inherit;
@@ -389,6 +399,7 @@ header {
     left: 0;
     padding-top: 200px;
 }
+/* Обертка содержимого. */
 .modal .cover {
     width: 400px;
     display: block;
@@ -397,16 +408,20 @@ header {
     padding: 25px;
     border: #bbb 1px solid;
 }
+/* Стиль заголовка модального окна. */
 .cover .modal_header {
     height: 30px;
     background: #fefefe;
 }
+/* Кнопка закрыть окно. */
 .cover .modal_header .cancel {
      float: right;
  }
+/* Обертка содержимого окна. */
 .cover .modal_content {
     background: #fefefe;
 }
+/* Стиль заголовка окна. */
 .cover .modal_content h3 {
     font-size: 16px;
     font-weight: bold;
@@ -414,7 +429,7 @@ header {
     text-align: center;
     height: 50px;
 }
-
+/* Текстовое поле с текстовой меткой. */
 .labeled_input {
     padding: 5px 10px;
     height: 40px;
@@ -429,13 +444,14 @@ header {
     height: 30px;
     width: 237px;
 }
-
+/* Стилизация окна "Контакты". */
 #contacts_modal .cover {
     height: 400px;
 }
 #contacts_modal .modal_content {
     height: 370px;
 }
+/* Стилизация окна "Вход". */
 #login_modal .cover {
     height: 260px;
 }
