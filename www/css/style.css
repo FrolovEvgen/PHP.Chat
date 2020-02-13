@@ -411,12 +411,12 @@ header {
 /* Стиль заголовка модального окна. */
 .cover .modal_header {
     height: 30px;
-    background: #fefefe;
+    background: #f6f6f6;
 }
 /* Кнопка закрыть окно. */
 .cover .modal_header .cancel {
-     float: right;
- }
+    float: right;
+}
 /* Обертка содержимого окна. */
 .cover .modal_content {
     background: #fefefe;
@@ -428,6 +428,8 @@ header {
     text-transform: uppercase;
     text-align: center;
     height: 50px;
+    border-bottom: 1px solid #ccc;
+    background: #f6f6f6;
 }
 /* Текстовое поле с текстовой меткой. */
 .labeled_input {
@@ -450,6 +452,17 @@ header {
 }
 #contacts_modal .modal_content {
     height: 370px;
+}
+#contacts_modal .icon .photo {
+    width: 30px;
+    height: 30px;
+}
+#contacts_modal .info{
+    padding: 5px;
+}
+#contacts_modal .info p {
+    line-height: 30px;
+    height: 30px;
 }
 /* Стилизация окна "Вход". */
 #login_modal .cover {
