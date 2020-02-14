@@ -1,6 +1,7 @@
 <?php
+// Попытка зайти на класс напрямую придется отправить в .. корень =)
 if (!defined('SESSION_ID')) {
-    header('Refresh: 0; url=/error/404');
+    header('Refresh: 0; url=/error404.html');
 }
 //------------------------------------------------------------------------------
 //    ОПИСАНИЕ
@@ -23,3 +24,15 @@ define('ENGINE', 'core');
 
 /** Директория сайта */
 define('LOCAL', 'www');
+
+/** Директория блоков */
+define('BLOCKS', 'blocks');
+
+/** Директория классов */
+define('CLASSES', 'classes');
+
+/** Директория шаблонов */
+define('TEMPLATES', 'templates');
+
+
+include_once(ROOT .DS . ENGINE . DS . "Engine.php");
