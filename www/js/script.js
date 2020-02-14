@@ -23,9 +23,9 @@ btnCloseLogin.onclick = function() {
     modal.style.display = "none";
 };
 // Обработчик кнопки закрытия окна "Пользователь".
-var btnCloseuUser = document.querySelector("#user_modal .cancel");
+var btnCloseUser = document.querySelector("#user_modal .cancel");
 // Если кнопка есть, то цепляем обработчик.
-if (null !== btnCloseLogin) {
+if (null !== btnCloseUser) {
     btnCloseUser.onclick = function() {
         var modal = document.querySelector("#user_modal");
         modal.style.display = "none";
