@@ -73,148 +73,7 @@ include_once('init.php');
                 <!-- Компонент Чат -->
                 <div id="chat">
                     <!-- Панель сообщений в чате. -->
-                    <div id="messages">
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user1.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Peter Parker</p>
-                                <p class="currentmessage">Blue – Responsive Vertical Dashboard Navigation is an admin dashboard menu, completely designed via Bootstrap, clean and valid HTML5 and CSS3 codes. Menu includes HTML, CSS, JS files also texts are formatted using Google Font and FontAwesome icons. Dashboard is fully responsive and it includes off canvas menu. Its also compatible with all browsers: Chrome, Mozilla, Opera, Safari, Edge, IE8, IE9, IE10, IE11. We definitely recommend you to buy our product if you desire elegant and modern dashboard menu in your website.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user2.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Sten Gordon</p>
-                                <p class="currentmessage">Using the library PDF.js, Wowbook can render PDF files with support for internal links, external html links, index and selectable text.</p>
-                                <p class="currentmessage">BETA: PDF SEARCH</p>
-                                <p class="currentmessage">WARNING: PDF rendering does not work on IE9 because the library PDF.js it’s not working on IE9</p>
-                                <p class="currentmessage">Responsive:</p>
-                                <p class="currentmessage">Comes with built in features to resize the book to adapt for different screens dimensions. Touch support (with pinch to zoom and double click to zoom). Responsive toolbar.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user1.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Peter Parker</p>
-                                <p class="currentmessage">Blue – Responsive Vertical Dashboard Navigation is an admin dashboard menu, completely designed via Bootstrap, clean and valid HTML5 and CSS3 codes. Menu includes HTML, CSS, JS files also texts are formatted using Google Font and FontAwesome icons. Dashboard is fully responsive and it includes off canvas menu. Its also compatible with all browsers: Chrome, Mozilla, Opera, Safari, Edge, IE8, IE9, IE10, IE11. We definitely recommend you to buy our product if you desire elegant and modern dashboard menu in your website.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user2.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Sten Gordon</p>
-                                <p class="currentmessage">Using the library PDF.js, Wowbook can render PDF files with support for internal links, external html links, index and selectable text.</p>
-                                <p class="currentmessage">BETA: PDF SEARCH</p>
-                                <p class="currentmessage">WARNING: PDF rendering does not work on IE9 because the library PDF.js it’s not working on IE9</p>
-                                <p class="currentmessage">Responsive:</p>
-                                <p class="currentmessage">Comes with built in features to resize the book to adapt for different screens dimensions. Touch support (with pinch to zoom and double click to zoom). Responsive toolbar.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user1.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Peter Parker</p>
-                                <p class="currentmessage">Blue – Responsive Vertical Dashboard Navigation is an admin dashboard menu, completely designed via Bootstrap, clean and valid HTML5 and CSS3 codes. Menu includes HTML, CSS, JS files also texts are formatted using Google Font and FontAwesome icons. Dashboard is fully responsive and it includes off canvas menu. Its also compatible with all browsers: Chrome, Mozilla, Opera, Safari, Edge, IE8, IE9, IE10, IE11. We definitely recommend you to buy our product if you desire elegant and modern dashboard menu in your website.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user2.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Sten Gordon</p>
-                                <p class="currentmessage">Using the library PDF.js, Wowbook can render PDF files with support for internal links, external html links, index and selectable text.</p>
-                                <p class="currentmessage">BETA: PDF SEARCH</p>
-                                <p class="currentmessage">WARNING: PDF rendering does not work on IE9 because the library PDF.js it’s not working on IE9</p>
-                                <p class="currentmessage">Responsive:</p>
-                                <p class="currentmessage">Comes with built in features to resize the book to adapt for different screens dimensions. Touch support (with pinch to zoom and double click to zoom). Responsive toolbar.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user1.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Peter Parker</p>
-                                <p class="currentmessage">Blue – Responsive Vertical Dashboard Navigation is an admin dashboard menu, completely designed via Bootstrap, clean and valid HTML5 and CSS3 codes. Menu includes HTML, CSS, JS files also texts are formatted using Google Font and FontAwesome icons. Dashboard is fully responsive and it includes off canvas menu. Its also compatible with all browsers: Chrome, Mozilla, Opera, Safari, Edge, IE8, IE9, IE10, IE11. We definitely recommend you to buy our product if you desire elegant and modern dashboard menu in your website.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user2.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Sten Gordon</p>
-                                <p class="currentmessage">Using the library PDF.js, Wowbook can render PDF files with support for internal links, external html links, index and selectable text.</p>
-                                <p class="currentmessage">BETA: PDF SEARCH</p>
-                                <p class="currentmessage">WARNING: PDF rendering does not work on IE9 because the library PDF.js it’s not working on IE9</p>
-                                <p class="currentmessage">Responsive:</p>
-                                <p class="currentmessage">Comes with built in features to resize the book to adapt for different screens dimensions. Touch support (with pinch to zoom and double click to zoom). Responsive toolbar.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user1.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Peter Parker</p>
-                                <p class="currentmessage">Blue – Responsive Vertical Dashboard Navigation is an admin dashboard menu, completely designed via Bootstrap, clean and valid HTML5 and CSS3 codes. Menu includes HTML, CSS, JS files also texts are formatted using Google Font and FontAwesome icons. Dashboard is fully responsive and it includes off canvas menu. Its also compatible with all browsers: Chrome, Mozilla, Opera, Safari, Edge, IE8, IE9, IE10, IE11. We definitely recommend you to buy our product if you desire elegant and modern dashboard menu in your website.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="icon">
-                                <img class="photo" src="img/user2.jpg">
-                            </div>
-                            <div class="info">
-                                <p class="username">Sten Gordon</p>
-                                <p class="currentmessage">Using the library PDF.js, Wowbook can render PDF files with support for internal links, external html links, index and selectable text.</p>
-                                <p class="currentmessage">BETA: PDF SEARCH</p>
-                                <p class="currentmessage">WARNING: PDF rendering does not work on IE9 because the library PDF.js it’s not working on IE9</p>
-                                <p class="currentmessage">Responsive:</p>
-                                <p class="currentmessage">Comes with built in features to resize the book to adapt for different screens dimensions. Touch support (with pinch to zoom and double click to zoom). Responsive toolbar.</p>
-                            </div>
-                            <div class="time">
-                                <p>09:10</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php Engine::loadBlock("MessageList"); ?>
                     <!-- Панель оправки сообщения в чат. -->
                     <div id="controls">
                         <!-- Панель ввода сообщения. -->
@@ -282,7 +141,8 @@ include_once('init.php');
                 </div>
             </div>
         </div>
-
+        <!-- Модальное окно "Информация о пользователе" -->
+        <?php Engine::loadBlock("UserInfo"); ?>
         <!-- Загрузка скриптов -->
         <script src="js/script.js"></script>
     </body>

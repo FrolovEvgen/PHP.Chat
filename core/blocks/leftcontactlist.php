@@ -5,30 +5,42 @@ if (!defined('SESSION_ID')) {
 }
 
 //------------------------------------------------------------------------------
-//	DESCRIPTIONS
+//	ОПИСАНИЕ
 //------------------------------------------------------------------------------
 /**
- * Файл leftcontactlist - без описания
+ * Файл leftcontactlist - Список контактов в левой панели.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 14.02.2020 9:10
  * @project PHP.Chat
  */
 //------------------------------------------------------------------------------
-//	IMPLEMENTS
+//	РЕАЛИЗАЦИЯ
 //------------------------------------------------------------------------------
+
+// Получаем список пользователей.
 $userList = WChat\Engine::$USER_LIST->getUsers();
+
+// перебираем пользователей и заполняем список.
 $component = '';
 foreach ($userList as $user) {
-    $message = $user->getLastmessage();
-    $component .= '<li><div class="contact">';
+
+    // Если пользователь текущий, то пропускаем его.
+    if ($user->getId() == WChat\Engine::$CURRENT_USER_ID) {continue;}
+
+    // Получаем последнее сообщение, если есть.
+    $message = WChat\Engine::$MESSAGE_LIST->getLastMessage($user->getId());
+
+    $component .= '<li><div class="contact" data-id="' . $user->getId() . '">';
     $component .= '<div class="icon">';
     $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '"></div>';
     $component .= '<div class="info">';
     $component .= '<p class="username">' . $user->getUsername(). '</p>';
-    $component .= '<p class="lastmessage">' . $message->getMessage() . '</p>';
+    $component .= '<p class="lastmessage">' . ($message ? $message->getMessage() : '&nbsp') . '</p>';
     $component .= '</div><div class="time">';
-    $component .= '<p>' . $message->getTime() . '</p>';
+    $component .= '<p>' . ($message ? $message->getTime() : '&nbsp'). '</p>';
     $component .= '</div></div></li>';
 }
+
+// Печатаем список.
 echo "<ul class=\"contact_list\">$component</ul>";

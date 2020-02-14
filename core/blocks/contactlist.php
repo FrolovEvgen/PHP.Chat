@@ -5,21 +5,27 @@ if (!defined('SESSION_ID')) {
 }
 
 //------------------------------------------------------------------------------
-//	DESCRIPTIONS
+//	ОПИСАНИЕ
 //------------------------------------------------------------------------------
 /**
- * Файл contactlist - без описания
+ * Файл contactlist - список контактов для модального окна.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 14.02.2020 9:43
  * @project PHP.Chat
  */
 //------------------------------------------------------------------------------
-//	IMPLEMENTS
+//	РЕАЛИЗАЦИЯ
 //------------------------------------------------------------------------------
+// Получаем список пользователей.
 $userList = WChat\Engine::$USER_LIST->getUsers();
+
+// Формируем список.
 $component = '';
 foreach ($userList as $user) {
+    // Если пользователь текущий - пропускаем.
+    if ($user->getId() == WChat\Engine::$CURRENT_USER_ID){continue;}
+
     $component .= '<li><div class="contact">';
     $component .= '<div class="icon">';
     $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '"></div>';
@@ -27,5 +33,6 @@ foreach ($userList as $user) {
     $component .= '<p class="username">' . $user->getUsername(). '</p>';
     $component .= '</div></div></li>';
 }
-echo "<ul class=\"contact_list\">$component</ul>";
 
+// Печатаем список.
+echo "<ul class=\"contact_list\">$component</ul>";

@@ -1,6 +1,7 @@
 <?php
 // Пространство имен.
 namespace WChat;
+use DateTime;
 
 // Попытка прочитать напрямую отправит в корень.
 if (!defined('SESSION_ID')) {
@@ -8,11 +9,11 @@ if (!defined('SESSION_ID')) {
 }
 
 //------------------------------------------------------------------------------
-//    DESCRIPTIONS
+//    ОПИСАНИЕ
 //------------------------------------------------------------------------------
 
 /**
- * Класс <b>Message</b> -- без описания.
+ * Класс <b>Message</b> -- сообщение пользователя.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 14.02.2020 0:36
@@ -25,16 +26,16 @@ class Message
     //--------------------------------------------------------------------------
 
     /**
-     * Message constructor.
-     * @param $userFromId int
-     * @param $message string
-     * @throws \Exception
+     * Создает экземпляр класса <b>Message</b>.
+     *
+     * @param int $userId ИД пользователя.
+     * @param string $message Сообщение пользователя.
      */
-    public function __construct($userFromId, $message)
+    public function __construct(int $userId, string $message)
     {
-        $this->userFromId = $userFromId;
+        $this->userId = $userId;
         $this->message = $message;
-        $this->dateTime = new \DateTime();
+        $this->dateTime = time();
     }
 
     //--------------------------------------------------------------------------
@@ -42,15 +43,19 @@ class Message
     //--------------------------------------------------------------------------
 
     /**
-     * @return int
+     * Получить ИД пользователя.
+     *
+     * @return int ИД пользователя.
      */
-    public function getUserFromId()
+    public function getUserId()
     {
-        return $this->userFromId;
+        return $this->userId;
     }
 
     /**
-     * @return string
+     * Получить сообщение.
+     *
+     * @return string Сообщение.
      */
     public function getMessage()
     {
@@ -58,7 +63,9 @@ class Message
     }
 
     /**
-     * @return \DateTime
+     * Получить дату/время сообщения.
+     *
+     * @return DateTime Дата-время сообщения.
      */
     public function getDateTime()
     {
@@ -66,10 +73,17 @@ class Message
     }
 
     /**
+     * Получить форматированное время сообщения.
      * @return string
      */
     public function getTime() {
-        return "10:35";
+        // Если сообщению больше 24 ч. вывести дату.
+        if(date('Y-m-d', $this->getDateTime()) < date('Y-m-d', time())) {
+            return date('Y-m-d', $this->getDateTime());
+        } else {
+            // Если нет - вывести время.
+            return date('h:i', $this->getDateTime());
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -81,17 +95,20 @@ class Message
     //--------------------------------------------------------------------------
 
     /**
+     * ИД пользователя.
      * @var int
      */
-    private $userFromId;
+    private $userId;
 
     /**
+     * Сообщение.
      * @var string
      */
     private $message;
 
     /**
-     * @var \DateTime
+     * Временная метка сообщения.
+     * @var DateTime
      */
     private $dateTime;
 

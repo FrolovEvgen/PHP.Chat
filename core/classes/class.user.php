@@ -8,11 +8,11 @@ if (!defined('SESSION_ID')) {
 }
 
 //------------------------------------------------------------------------------
-//    DESCRIPTIONS
+//    ОПИСАНИЕ
 //------------------------------------------------------------------------------
 
 /**
- * Класс <b>User</b> -- без описания.
+ * Класс <b>User</b> -- данные пользователя.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 14.02.2020 0:36
@@ -25,18 +25,27 @@ class User
     //--------------------------------------------------------------------------
 
     /**
-     * User constructor.
-     * @param string $username
-     * @param string $iconname
-     * @param string $lastmessage
-     * @throws \Exception
+     * Создать экземпляр класса <b>User</b>.
+     *
+     * @param string $username Имя пользователя.
+     * @param string $iconname Название иконки пользователя.
+     * @param string $phone Телефон пользователя.
+     * @param string $email ЕМейл пользователя.
      */
-    public function __construct(string $username, string $iconname, string $lastmessage)
+    public function __construct(
+        string $username,
+        string $iconname,
+        string $phone,
+        string $email)
     {
+        // "Генерируем" ИД пользователя.
         $this->userId = User::$ID++;
-        $this->username = $username;
-        $this->iconname = $iconname;
-        $this->lastmessage = new Message($this->userId, $lastmessage);
+
+        // сохраняем данные полей.
+        $this->setUsername($username);
+        $this->setIconname($iconname);
+        $this->setEmail($email);
+        $this->setPhone($phone);
     }
 
     //--------------------------------------------------------------------------
@@ -44,7 +53,9 @@ class User
     //--------------------------------------------------------------------------
 
     /**
-     * @return string
+     * Получить имя пользователя.
+     *
+     * @return string Имя пользователя.
      */
     public function getUsername(): string
     {
@@ -52,7 +63,9 @@ class User
     }
 
     /**
-     * @param string $username
+     * Сохранить имя пользователя.
+     *
+     * @param string $username Имя пользователя.
      */
     public function setUsername(string $username)
     {
@@ -60,7 +73,9 @@ class User
     }
 
     /**
-     * @return string
+     * Получить иконку пользователя.
+     *
+     * @return string Иконка пользователя.
      */
     public function getIconname(): string
     {
@@ -68,7 +83,9 @@ class User
     }
 
     /**
-     * @param string $iconname
+     * Сохранить иконку пользователя.
+     *
+     * @param string $iconname Иконка пользователя.
      */
     public function setIconname(string $iconname)
     {
@@ -76,15 +93,43 @@ class User
     }
 
     /**
-     * @return Message
+     * Получить телефон пользователя.
+     *
+     * @return string Телефон пользователя.
      */
-    public function getLastmessage(): Message
-    {
-        return $this->lastmessage;
+    function getPhone(): string {
+        return $this->phone;
     }
 
     /**
-     * @return int
+     * Сохранить телефон пользователя.
+     *
+     * @param string $phone Телефон пользователя.
+     */
+    function setPhone(string $phone) {
+        $this->phone = $phone;
+    }
+
+    /**
+     * Получить ЕМейл пользователя.
+     * @return string ЕМейл пользователя.
+     */
+    function getEmail(): string {
+        return $this->email;
+    }
+
+    /**
+     * Задать ЕМейл пользователя.
+     * @param string $email ЕМейл пользователя.
+     */
+    function setEmail(string $email) {
+        $this->email = $email;
+    }
+
+    /**
+     * Получить ИД пользователя.
+     *
+     * @return int Ид пользователя.
      */
     public function getId(): int
     {
@@ -98,24 +143,38 @@ class User
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
     /**
+     * Счетчик пользователей.
      * @var int
      */
-    private static $ID = 0;
+    private static $ID = 1;
 
     /**
+     * ИД пользователя.
      * @var int
      */
-     private $userId;
+    private $userId;
+
     /**
+     * Имя пользователя.
      * @var string
      */
     private $username;
+
     /**
+     * Иконка пользователя.
      * @var string
      */
     private $iconname;
+
     /**
-     * @var Message
+     * Телефон пользователя.
+     * @var string
      */
-    private $lastmessage;
+    private $phone;
+
+    /**
+     * ЕМейл пользователя.
+     * @var string
+     */
+    private $email;
 }

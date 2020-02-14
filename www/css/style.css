@@ -471,3 +471,29 @@ header {
 #login_modal .modal_content {
     height: 230px;
 }
+/* Стилимзация окна "Пользователь". */
+#user_modal {
+    display: block;
+}
+/* Стиль иконки */
+#user_modal .icon {
+    margin: 30px auto;
+    width: 150px;
+    height: 150px;
+}
+#user_modal .icon img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+/* Стиль текстовых полей. */
+#user_modal .text_input {
+    padding: 10px;
+}
+#user_modal .text_input span {
+    display: inline-block;
+}
+#user_modal .text_input .fieldname {
+    width: 160px;
+    font-weight: bold;
+}

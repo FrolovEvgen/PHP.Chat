@@ -8,11 +8,11 @@ if (!defined('SESSION_ID')) {
 }
 
 //------------------------------------------------------------------------------
-//    DESCRIPTIONS
+//    ОПИСАНИЕ
 //------------------------------------------------------------------------------
 
 /**
- * Класс <b>MessageList</b> -- без описания.
+ * Класс <b>MessageList</b> -- список сообщений.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 14.02.2020 10:31
@@ -27,69 +27,103 @@ class MessageList
     //--------------------------------------------------------------------------
     // PUBLIC SECTION
     //--------------------------------------------------------------------------
+
     /**
-     * @return int
+     * Инициализация списка.
      */
-    public function getUserFromId(): int
-    {
-        return $this->userFromId;
+    public function init() {
+        // Определяем текущего пользователя.
+        $currentUserId = Engine::$CURRENT_USER_ID;
+
+        // Добавляем "переписку".
+        $this->addMessage(1, $currentUserId, "Привет!;)");
+        $this->addMessage(2, $currentUserId, "Привет!;)");
+        $this->addMessage(3, $currentUserId, "Привет!;)");
+        $this->addMessage(4, $currentUserId, "Привет!;)");
+        $this->addMessage(5, $currentUserId, "Привет! Как дела?;)");
+        $this->addMessage(6, $currentUserId, "Привет! Как дела?;)");
+        $this->addMessage(7, $currentUserId, "Привет!;)");
+        $this->addMessage(8, $currentUserId, "Привет!;)");
+        $this->addMessage(9, $currentUserId, "=)");
+        $this->addMessage(10, $currentUserId, "Привет!;)");
+        $this->addMessage(1, 1, "О! Привет!");
+        $this->addMessage(1, 1, "Как дела?");
+        $this->addMessage(1, $currentUserId, "Нормально.. Сам как?");
+        $this->addMessage(1, 1, "Та я вот сижу и домашку пилю.");
+        $this->addMessage(1, 1, "А еще и приболел немного.");
+        $this->addMessage(1, $currentUserId, "Что нового?");
+        $this->addMessage(1, 1, "Та сваливаю на выхах.");
+        $this->addMessage(2, 2, "Дарова братан!!!");
+        $this->addMessage(3, 3, "Ты кто такой?!");
+        $this->addMessage(4, 4, "Ты где пропал?!");
+        $this->addMessage(5, 5, "Все норм! Только приехала..");
+        $this->addMessage(6, 6, "Все нормально =)");
+        $this->addMessage(7, 7, "Слушай..тут такая тема надо встретится..");
+        $this->addMessage(8, 8, "Приветы!");
+        $this->addMessage(9, 9, ";)");
+        $this->addMessage(10, 10, "Неть меня ))))))))");
     }
 
     /**
-     * @param int $userFromId
+     * Добавить сообщение в чат.
+     *
+     * @param int $chatId ИД чата.
+     * @param int $userId ИД пользователя от которого отправляют сообщение.
+     * @param string $message Сообщение
      */
-    public function setUserFromId(int $userFromId)
-    {
-        $this->userFromId = $userFromId;
+    public function addMessage(int $chatId, int $userId, string $message) {
+        // Генерируем ключ чата.
+        $chatKey =  $this->getChatKey($chatId);
+
+        // Проверяем есть ли уже созданный чат.
+        if (!array_key_exists($chatKey  , $this->messages)) {
+            // Если нет, то создадим.
+            $this->messages[$chatKey] = array();
+        }
+
+        // Добавляем сообщение.
+        array_push($this->messages[$chatKey], new Message($userId, $message));
     }
 
     /**
-     * @return int
+     * Получить список сообщений.
+     *
+     * @param int $chatId ИД чата.
+     * @return array Список сообщений.
      */
-    public function getUserToId(): int
-    {
-        return $this->userToId;
+    public function getMessages(int $chatId): array {
+        // Генерируем ключ чата.
+        $chatKey =  $this->getChatKey($chatId);
+
+        // Проверяем есть ли уже созданный чат.
+        if (array_key_exists($chatKey  , $this->messages)) {
+            // Если есть, то вернем содержимое.
+            return $this->messages[$chatKey];
+        }
+        return null;
     }
 
     /**
-     * @param int $userToId
+     * Получить последнее сообщение в чате.
+     *
+     * @param int $chatId ИД чата.
+     * @return Message Сообщение.
      */
-    public function setUserToId(int $userToId)
-    {
-        $this->userToId = $userToId;
+    public function getLastMessage(int $chatId): Message {
+        // Получить сообщение.
+        $messages = $this->getMessages($chatId);
+
+        // Если есть сообщения.
+        if ($messages != null) {
+            // Вычисляем и выводим последнее.
+            $total = count($messages);
+            return $messages[$total - 1];
+        }
+
+        // Если нет возвращаем Null.
+        return null;
     }
 
-    /**
-     * @return string
-     */
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    /**
-     * @param string $message
-     */
-    public function setMessage(string $message)
-    {
-        $this->message = $message;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDateTime(): DateTime
-    {
-        return $this->dateTime;
-    }
-
-    /**
-     * @param DateTime $dateTime
-     */
-    public function setDateTime(DateTime $dateTime)
-    {
-        $this->dateTime = $dateTime;
-    }
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------
@@ -97,20 +131,19 @@ class MessageList
     //--------------------------------------------------------------------------
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
+
     /**
-     * @var int
+     * сгенерировать ключ чата из ИД.
+     *
+     * @return String Сообщение.
      */
-    private $userFromId;
+    private function getChatKey($id) {
+        return "chat_$id";
+    }
+
     /**
-     * @var int
+     * Массив чатов и сообщений.
+     * @var array
      */
-    private $userToId;
-    /**
-     * @var string
-     */
-    private $message;
-    /**
-     * @var DateTime
-     */
-    private $dateTime;
+    private $messages = [];
 }
