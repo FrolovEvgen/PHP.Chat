@@ -182,6 +182,9 @@ header {
     display: inline-block;
     vertical-align: top;
 }
+#messages .message .icon:hover {
+    cursor: pointer;
+}
 /* Иконка пользователя. */
 #messages .message .icon .photo {
     width: 48px;

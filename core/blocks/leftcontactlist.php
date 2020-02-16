@@ -31,7 +31,7 @@ foreach ($userList as $user) {
     // Получаем последнее сообщение, если есть.
     $message = WChat\Engine::$MESSAGE_LIST->getLastMessage($user->getId());
 
-    $component .= '<li><div class="contact" data-id="' . $user->getId() . '">';
+    $component .= '<li><div class="contact" >';
     $component .= '<div class="icon">';
     $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '"></div>';
     $component .= '<div class="info">';

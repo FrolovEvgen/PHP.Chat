@@ -27,8 +27,8 @@ foreach ($messageList as $message) {
     // Получаем инфу о пользователе по ИД.
     $user = WChat\Engine::$USER_LIST->getUserById($message->getUserId());
 
-    $component .= '<div class="message" data-id="' . $user->getId() . '">';
-    $component .= '<div class="icon">';
+    $component .= '<div class="message">';
+    $component .= '<div class="icon" data-id="' . $user->getId() . '">';
     $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '">';
     $component .= '</div><div class="info">';
     $component .= '<p class="username">' . $user->getUsername(). '</p>';

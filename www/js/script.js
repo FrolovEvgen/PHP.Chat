@@ -32,7 +32,7 @@ if (null !== btnCloseUser) {
     };
 }
 // Получаем список контактов.
-var contacts = document.querySelectorAll("#contact_list .contact");
+var contacts = document.querySelectorAll("#messages .icon");
 // Обновляем событие на клик.
 contacts.forEach(function(contact){
     //Если кликнули.
