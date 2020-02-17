@@ -124,6 +124,31 @@ class MessageList
         return null;
     }
 
+    /**
+     *  Поиск сообщений по шаблону.
+     *
+     * @param string $search Шаблон поиска.
+     * @return array Найденный сообщения.
+     */
+    public function search (string $search): array {
+        $found = [];
+        // Осуществляем поиск по шаблону.
+        foreach ($this->messages as $key => $chat) {
+            foreach ($chat as $message) {
+                if (Engine::isConsist($message->getMessage(), $search)) {
+                    array_push($found, $message);
+                }
+            }
+        }
+        // Чистим "уши".
+        unset($key);
+        unset($chat);
+        unset($message);
+
+        // Возвращаем результат.
+        return $found;
+    }
+
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------

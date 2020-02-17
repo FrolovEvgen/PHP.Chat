@@ -131,8 +131,7 @@ class User
      *
      * @return int Ид пользователя.
      */
-    public function getId(): int
-    {
+    public function getId(): int {
         return $this->userId;
     }
     //--------------------------------------------------------------------------

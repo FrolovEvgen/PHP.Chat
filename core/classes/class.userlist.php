@@ -88,6 +88,28 @@ class UserList
     public function getUsers(): array {
         return $this->userList;
     }
+
+    /**
+     * Поиск пользователей по имени.
+     * @param string $search Шаблон имени.
+     * @return array Найденные пользователи.
+     */
+    public function search(string $search): array {
+        $found = [];
+
+        // Осуществляем поиск по шаблону.
+        foreach ($this->userList as $user) {
+            if (Engine::isConsist($user->getUsername(), $search)) {
+                array_push($found, $user);
+            }
+        }
+
+        // Чистим "уши".
+        unset($user);
+
+        // возвращаем результат.
+        return $found;
+    }
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------

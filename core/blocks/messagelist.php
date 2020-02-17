@@ -18,8 +18,17 @@ if (!defined('SESSION_ID')) {
 //	РЕАЛИЗАЦИЯ
 //------------------------------------------------------------------------------
 
-// Получаем сообщения с пользователем по его ИД.
-$messageList = WChat\Engine::$MESSAGE_LIST->getMessages(WChat\Engine::$SELECTED_USER_ID);
+// Поисковый запрос.
+$search_text = WChat\Engine::GET("search_text");
+
+$messageList = [];
+If (WChat\Engine::$SELECTED_USER_ID != '') {
+    // Получаем сообщения с пользователем по его ИД.
+    $messageList = WChat\Engine::$MESSAGE_LIST->getMessages(WChat\Engine::$SELECTED_USER_ID);
+} else if ($search_text != '') {
+    // иначе делаем поиск по шаблону, если такой есть.
+    $messageList = WChat\Engine::$MESSAGE_LIST->search($search_text);
+}
 
 // Добавляем сообщения.
 $component = '';
@@ -38,5 +47,12 @@ foreach ($messageList as $message) {
     $component .= '</div></div>';
 }
 
+if ($component == '') {
+    if ($search_text != '') {
+        $component = '<div class="message empty"><h3>Сообщения не найдены!</h3></div>';
+    } else {
+        $component = '<div class="message empty"><h3>Пользователь не выбран!</h3></div>';
+    }
+}
 // Печатаем результат.
 echo "<div id=\"messages\">$component</div>";

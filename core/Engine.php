@@ -67,8 +67,7 @@ class Engine
         // Устанавливаем текущего пользователя.
         self::$CURRENT_USER_ID = 11;
 
-        self::$SELECTED_USER_ID = self::GET("user_id", self::SESSION("user_id", 1));
-        $_SESSION["user_id"] = self::$SELECTED_USER_ID;
+        self::$SELECTED_USER_ID = self::GET("user_id");
 
         // Инициируем список сообщений.
         self::$MESSAGE_LIST = new MessageList();
@@ -151,6 +150,20 @@ class Engine
         return($strResult);
     }
 
+    /**
+     * Поиск вхождения строки в подстроку (включая кириллицу).
+     *
+     * @param string $haystack Строка, в которой производится поиск.
+     * @param string $needle Поисковый текст.
+     * @return bool Результат операции.
+     */
+    public static function isConsist(string $haystack, string $needle): bool {
+        // Утраняем глюки с кириллицей.
+        $target = iconv('UTF-8','WINDOWS-1251', $haystack);
+        $search = iconv('UTF-8','WINDOWS-1251', $needle);
+
+        return (stristr($target,  $search) !== false);
+    }
 
     //--------------------------------------------------------------------------
     // PROTECTED SECTION

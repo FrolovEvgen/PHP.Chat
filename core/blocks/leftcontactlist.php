@@ -18,8 +18,18 @@ if (!defined('SESSION_ID')) {
 //	РЕАЛИЗАЦИЯ
 //------------------------------------------------------------------------------
 
+// Поисковый запрос.
+$search_text = WChat\Engine::GET("search_text");
+
 // Получаем список пользователей.
-$userList = WChat\Engine::$USER_LIST->getUsers();
+$userList = [];
+if ($search_text != '') {
+    // Если есть поисковый запрос, то ищем.
+    $userList = WChat\Engine::$USER_LIST->search($search_text);
+} else {
+    // Иначе получаем все что есть.
+    $userList = WChat\Engine::$USER_LIST->getUsers();
+}
 
 // перебираем пользователей и заполняем список.
 $component = '';
@@ -28,6 +38,7 @@ foreach ($userList as $user) {
     // Если пользователь текущий, то пропускаем его.
     if ($user->getId() == WChat\Engine::$CURRENT_USER_ID) {continue;}
 
+    // Устанавливаем флаг выбранного пользователя если нам передали ИД.
     $selected = (WChat\Engine::$SELECTED_USER_ID == $user->getId());
 
     // Получаем последнее сообщение, если есть.
@@ -43,6 +54,14 @@ foreach ($userList as $user) {
     $component .= '</div><div class="time">';
     $component .= '<p>' . ($message ? $message->getTime() : '&nbsp'). '</p>';
     $component .= '</div></div></li>';
+}
+
+if ($component == '') {
+    if ($search_text != '') {
+        $component = '<li><div class="contact empty"><h3>Пользователи не найдены.</h3></div></li>';
+    } else {
+        $component = '<li><div class="contact empty"><h3>Нет пользователей.</h3></div></li>';
+    }
 }
 
 // Печатаем список.

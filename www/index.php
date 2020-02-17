@@ -60,13 +60,7 @@ include_once('init.php');
                 <!-- Компонент контакт лист. -->
                 <div id="contact_list">
                     <!-- Полу поиска. -->
-                    <div id="search">
-                        <div id="searchfield" class="textinput">
-                            <button class="squarebutton iconbutton cancel hidden">&nbsp;</button>
-                            <input class="textfield" type="text" name="text">
-                            <button class="squarebutton iconbutton search">&nbsp;</button>
-                        </div>
-                    </div>
+                    <div id="search"> </div>
                     <!-- Список контактов. -->
                     <?php Engine::loadBlock("LeftContactList"); ?>
                 </div>
@@ -144,6 +138,9 @@ include_once('init.php');
         <!-- Модальное окно "Информация о пользователе" -->
         <?php Engine::loadBlock("UserInfo"); ?>
         <!-- Загрузка скриптов -->
+        <script src="js/utils/util.js"></script>
+        <script src="js/mixins/mixin.core.js"></script>
+        <script src="js/components/searchfield.js"></script>
         <script src="js/script.js"></script>
     </body>
 </html>

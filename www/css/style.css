@@ -151,7 +151,15 @@ header {
     font-size: 12px;
     margin-top: 20px;
 }
-
+/* Системное сообщение контакт листа */
+.contact_list .contact.empty {
+    display: block;
+    margin: 20px;
+}
+.contact_list .contact.empty h3 {
+    text-align: center;
+    font-weight: bold;
+}
 /*****************************************************************************
  * Стили чата.
  *****************************************************************************/
@@ -222,6 +230,12 @@ header {
     vertical-align: top;
     font-size: 10px;
     font-weight: bold;
+}
+/* Системное сообщение */
+#messages .message.empty h3 {
+    text-align: center;
+    font-weight: bold;
+    margin: 100px;
 }
 
 /*****************************************************************************

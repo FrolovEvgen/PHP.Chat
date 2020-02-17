@@ -31,6 +31,7 @@ if (null !== btnCloseUser) {
         modal.style.display = "none";
     };
 }
+
 // Получаем список сообщений.
 var userPics = document.querySelectorAll("#messages .icon");
 // Обновляем событие на клик.
@@ -89,3 +90,9 @@ contacts.forEach(function(contact){
         }
     };
 });
+
+// добавляем поисковый компонент.
+var searchField = createSearchField();
+searchField.renderTo = "#search";
+searchField.show();
+
