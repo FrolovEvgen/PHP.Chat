@@ -11,7 +11,7 @@ function createSearchField() {
      * Проверка на заполненость строки.
      *
      * @param {String} value Проверяемое значение.
-     * @returns {boolean} Результат проверки.
+     * @returns {Boolean} Результат проверки.
      */
     var isNullOrEmpty = function(value) {
         return typeof(value) === 'undefined' || null === value || '' === value;
@@ -204,7 +204,7 @@ function createSearchField() {
 
     /**
      * Получить значение поля.
-     * @returns {string}
+     * @returns {String}
      */
     element.getValue = function() {
         var inputEl = this.getProperty("InputField");
@@ -213,7 +213,7 @@ function createSearchField() {
 
     /**
      * Задать значение поля.
-     * @param text
+     * @param {String} text вводимый текст.
      */
     element.setValue = function(text) {
         if (isNullOrEmpty(text)) {
