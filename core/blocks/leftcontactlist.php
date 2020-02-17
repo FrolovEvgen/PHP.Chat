@@ -28,10 +28,13 @@ foreach ($userList as $user) {
     // Если пользователь текущий, то пропускаем его.
     if ($user->getId() == WChat\Engine::$CURRENT_USER_ID) {continue;}
 
+    $selected = (WChat\Engine::$SELECTED_USER_ID == $user->getId());
+
     // Получаем последнее сообщение, если есть.
     $message = WChat\Engine::$MESSAGE_LIST->getLastMessage($user->getId());
 
-    $component .= '<li><div class="contact" >';
+    $component .= '<li><div class="contact' . ($selected ? ' selected' : '');
+    $component .='" data-id="' . $user->getId() . '" >';
     $component .= '<div class="icon">';
     $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '"></div>';
     $component .= '<div class="info">';

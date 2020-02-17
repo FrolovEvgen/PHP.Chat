@@ -17,8 +17,8 @@ if (!defined('SESSION_ID')) {
 //------------------------------------------------------------------------------
 //	РЕАЛИЗАЦИЯ
 //------------------------------------------------------------------------------
-if (isset($_GET["user_id"])) {
-    $userId = $_GET["user_id"];
+$userId =  WChat\Engine::GET("info_id");
+if ($userId != '') {
     // Получаем пользовател.
     $user = WChat\Engine::$USER_LIST->getUserById($userId);
 

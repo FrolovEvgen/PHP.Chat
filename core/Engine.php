@@ -48,6 +48,8 @@ class Engine
      */
     public static $CURRENT_USER_ID;
 
+    public static $SELECTED_USER_ID;
+
     /**
      * Инициализация движка.
      */
@@ -64,6 +66,9 @@ class Engine
 
         // Устанавливаем текущего пользователя.
         self::$CURRENT_USER_ID = 11;
+
+        self::$SELECTED_USER_ID = self::GET("user_id", self::SESSION("user_id", 1));
+        $_SESSION["user_id"] = self::$SELECTED_USER_ID;
 
         // Инициируем список сообщений.
         self::$MESSAGE_LIST = new MessageList();
@@ -106,6 +111,46 @@ class Engine
         return (TRUE);
     }
 
+    /**
+     * Получить экранированную переменную из глобального массива
+     * $_GET
+     *
+     * @param string $strKey Параметр массива $_GET.
+     * @param string $defaultValue (по-умолчанию = "") Значение по-умолчанию,
+     *      если елемент в массиве $_GET отсутствует.
+     * @return string Экранированный элемент массива $_GET.
+     */
+    public static function GET($strKey, $defaultValue = '') {
+        // Если есть параметр с таким именем, то экранировать переменную.
+        if (isset($_GET[$strKey])) {
+            $strResult = self::_protectValue($_GET[$strKey]);
+        } else { // Если нет, установить значение по-умолчанию.
+            $strResult = $defaultValue;
+        }
+        // Вернуть результат и сохранить его в глобальной переменной.
+        return($strResult);
+    }
+
+    /**
+     * Получить экранированную переменную из глобального массива
+     * $_SESSION.
+     *
+     * @param string $strKey Параметр массива $_SESSION.
+     * @param string $defaultValue (по-умолчанию = "") Значение по-умолчанию,
+     *      если елемент в массиве $_SESSION  отсутствует
+     * @return string Экранированный элемент массива $_SESSION.
+     */
+    public static function SESSION($strKey, $defaultValue = '') {
+        // Если есть параметр с таким именем, то экранировать переменную.
+        if (isset($_SESSION[$strKey])) {
+            $strResult = self::_protectValue($_SESSION[$strKey]);
+        } else { // Если нет, установить значение по-умолчанию.
+            $strResult = $defaultValue;
+        }
+        // Вернуть результат и сохранить его в глобальной переменной.
+        return($strResult);
+    }
+
 
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
@@ -114,6 +159,31 @@ class Engine
     //--------------------------------------------------------------------------
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
+
+    /**
+     * Экранирование переменной.
+     * Используется для удаления различных несанкционированных данных в
+     * передаваемых параметрах.
+     *
+     * @param mixed $value Неэкранированное значение.
+     * @return mixed Экранированное значение.
+     */
+    private static function _protectValue($value) {
+        // Если значение является массивом.
+        if (is_array($value)) {
+            // Экранировать каждый элемент массива.
+            foreach ($value as $key=>$val) {
+                $value[$key] = self::_protectValue($val);
+            }
+        } else if (!is_object ($val)) {// Если значение не массив.
+            // "Обрезаем" лишние пробелы.
+            $value = trim($value);
+            // Экранируем спецсимволы.
+            $value = htmlspecialchars($value);
+        }
+        // Возвращаем экранированное значение.
+        return ($value);
+    }
 
     /**
      * Список загруженных классов.

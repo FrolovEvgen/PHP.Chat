@@ -106,9 +106,12 @@ header {
 .contact_list .contact {
     display: flex;
 }
+.contact_list .contact:hover,
+.contact_list .contact.selected {
+    background: #eee;
+}
 /* Обертка контакта при наведении мыши. */
 .contact_list .contact:hover {
-    background: #eee;
     cursor: pointer;
 }
 /* Общие настройки элементов контакта. */

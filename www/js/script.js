@@ -31,21 +31,61 @@ if (null !== btnCloseUser) {
         modal.style.display = "none";
     };
 }
-// Получаем список контактов.
-var contacts = document.querySelectorAll("#messages .icon");
+// Получаем список сообщений.
+var userPics = document.querySelectorAll("#messages .icon");
 // Обновляем событие на клик.
-contacts.forEach(function(contact){
+userPics.forEach(function(userPic){
     //Если кликнули.
-    contact.onclick = function(event) {
-        // Получаем ИД пользователя.
-        var userId = event.currentTarget.dataset.id;
+    userPic.onclick = function(event) {
+        // Получаем ИД пользователя которого выбрали.
+        var currentEl = event.currentTarget;
+        var userId = currentEl.dataset.id;
+
+        // Получаем ИД уже выбраного пользователя.
+        var selectedEl = document.querySelector("#contact_list .selected");
+        var selectedId = selectedEl.dataset.id;
 
         // Создаем элемент Линк.
         var link = document.createElement("a");
         link.id = "User_" + userId;
-        link.href = "/?user_id=" + userId;
+        link.href = "/?user_id=" + selectedId;
+        link.href += "&info_id=" + userId;
 
         // Эмулируем нажатие на элемент.
         link.click();
+    };
+});
+
+// Получаем список контактов.
+var contacts = document.querySelectorAll("#contact_list .contact");
+// Обновляем событие на клик.
+contacts.forEach(function(contact){
+    //Если кликнули.
+    contact.onclick = function(event) {
+        // Получаем ИД уже выбраного пользователя.
+        var selectedEl = document.querySelector("#contact_list .selected");
+        var selectedId = selectedEl === null ? -1 : selectedEl.dataset.id;
+
+        // Получаем ИД пользователя которого выбрали.
+        var currentEl = event.currentTarget;
+        var userId = currentEl.dataset.id;
+
+        // Если не совпадают.
+        if (userId != selectedId) {
+            // Снимаем выделение старого и выбираем нового пользователя.
+            if (selectedEl !== null) {
+                selectedEl.classList.remove("selected");
+            }
+            currentEl.classList.add("selected");
+
+            // Создаем элемент Линк.
+            var link = document.createElement("a");
+            link.id = "User_" + userId;
+            link.href = "/?user_id=" + userId;
+
+            // Эмулируем нажатие на элемент.
+            link.click();
+
+        }
     };
 });

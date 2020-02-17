@@ -19,7 +19,7 @@ if (!defined('SESSION_ID')) {
 //------------------------------------------------------------------------------
 
 // Получаем сообщения с пользователем по его ИД.
-$messageList = WChat\Engine::$MESSAGE_LIST->getMessages(1);
+$messageList = WChat\Engine::$MESSAGE_LIST->getMessages(WChat\Engine::$SELECTED_USER_ID);
 
 // Добавляем сообщения.
 $component = '';
