@@ -58,7 +58,7 @@ foreach ($userList as $user) {
 
 if ($component == '') {
     if ($search_text != '') {
-        $component = '<li><div class="contact empty"><h3>Пользователи не найдены.</h3></div></li>';
+        $component = '<li><div class="contact empty"><h3>Совпадений не найдено!</h3></div></li>';
     } else {
         $component = '<li><div class="contact empty"><h3>Нет пользователей.</h3></div></li>';
     }

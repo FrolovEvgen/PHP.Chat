@@ -36,3 +36,10 @@ define('TEMPLATES', 'templates');
 
 // Подключаем движок.
 include_once(ROOT .DS . ENGINE . DS . "Engine.php");
+
+WChat\Engine::$DB->connect(
+    "wchat",       // Имя БД
+    "root",   // Пользователь БД
+    "",     // Пароль пользователя.
+    "localhost"     // Хост БД.
+);

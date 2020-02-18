@@ -34,7 +34,7 @@ If (WChat\Engine::$SELECTED_USER_ID != '') {
 $component = '';
 foreach ($messageList as $message) {
     // Получаем инфу о пользователе по ИД.
-    $user = WChat\Engine::$USER_LIST->getUserById($message->getUserId());
+    $user = WChat\Engine::$USER_LIST->getUserById($message->getFromId());
 
     $component .= '<div class="message">';
     $component .= '<div class="icon" data-id="' . $user->getId() . '">';
@@ -49,7 +49,7 @@ foreach ($messageList as $message) {
 
 if ($component == '') {
     if ($search_text != '') {
-        $component = '<div class="message empty"><h3>Сообщения не найдены!</h3></div>';
+        $component = '<div class="message empty"><h3>Совпадений не найдено!</h3></div>';
     } else {
         $component = '<div class="message empty"><h3>Пользователь не выбран!</h3></div>';
     }

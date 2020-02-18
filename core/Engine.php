@@ -43,11 +43,21 @@ class Engine
     public static $MESSAGE_LIST;
 
     /**
+     * База данных.
+     * @var DBConnector
+     */
+    public static $DB;
+
+    /**
      * ИД текущего пользователя.
      * @var int
      */
     public static $CURRENT_USER_ID;
 
+    /**
+     * ИД выбраного пользователя.
+     * @var int
+     */
     public static $SELECTED_USER_ID;
 
     /**
@@ -55,6 +65,7 @@ class Engine
      */
     public static function init() {
         // Загружаем связанные классы.
+        self::loadClass('DBConnector');
         self::loadClass('User');
         self::loadClass('UserList');
         self::loadClass('Message');
@@ -62,16 +73,19 @@ class Engine
 
         // Инициируем список пользователей.
         self::$USER_LIST = new UserList();
-        self::$USER_LIST->init();
+
+        // Инициируем список сообщений.
+        self::$MESSAGE_LIST = new MessageList();
+
+        // Создаем коннектор к БД.
+        self::$DB = new DBConnector();
 
         // Устанавливаем текущего пользователя.
         self::$CURRENT_USER_ID = 11;
 
+        // Получаем пользователя с кем ведем переписку, если есть.
         self::$SELECTED_USER_ID = self::GET("user_id");
 
-        // Инициируем список сообщений.
-        self::$MESSAGE_LIST = new MessageList();
-        self::$MESSAGE_LIST->init();
     }
 
     /**

@@ -28,14 +28,21 @@ class Message
     /**
      * Создает экземпляр класса <b>Message</b>.
      *
-     * @param int $userId ИД пользователя.
+     * @param int $id
+     * @param int $fromId
+     * @param int $toId
      * @param string $message Сообщение пользователя.
+     * @param int $dateTime
+     * @throws \Exception
      */
-    public function __construct(int $userId, string $message)
+    public function __construct(int $id, int $fromId, int $toId, string $message, int $dateTime)
     {
-        $this->userId = $userId;
+        $this->id = $id;
+        $this->fromId = $fromId;
+        $this->toId = $toId;
         $this->message = $message;
-        $this->dateTime = time();
+        $this->dateTime = new DateTime();
+        $this->dateTime->setTimestamp($dateTime);
     }
 
     //--------------------------------------------------------------------------
@@ -43,13 +50,26 @@ class Message
     //--------------------------------------------------------------------------
 
     /**
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFromId(): int {
+        return $this->fromId;
+    }
+
+    /**
      * Получить ИД пользователя.
      *
      * @return int ИД пользователя.
      */
-    public function getUserId()
-    {
-        return $this->userId;
+    public function getToId(): int {
+        return $this->toId;
     }
 
     /**
@@ -57,8 +77,7 @@ class Message
      *
      * @return string Сообщение.
      */
-    public function getMessage()
-    {
+    public function getMessage(): string {
         return $this->message;
     }
 
@@ -67,8 +86,7 @@ class Message
      *
      * @return DateTime Дата-время сообщения.
      */
-    public function getDateTime()
-    {
+    public function getDateTime(): DateTime {
         return $this->dateTime;
     }
 
@@ -76,13 +94,13 @@ class Message
      * Получить форматированное время сообщения.
      * @return string
      */
-    public function getTime() {
+    public function getTime(): string {
         // Если сообщению больше 24 ч. вывести дату.
-        if(date('Y-m-d', $this->getDateTime()) < date('Y-m-d', time())) {
-            return date('Y-m-d', $this->getDateTime());
+        if(date('Y-m-d', $this->getDateTime()->getTimestamp()) < date('Y-m-d', time())) {
+            return date('Y-m-d', $this->getDateTime()->getTimestamp());
         } else {
             // Если нет - вывести время.
-            return date('h:i', $this->getDateTime());
+            return date('h:i', $this->getDateTime()->getTimestamp());
         }
     }
 
@@ -94,11 +112,20 @@ class Message
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
 
+
+    private $id;
+
     /**
-     * ИД пользователя.
+     * ИД отправителя.
      * @var int
      */
-    private $userId;
+    private $fromId;
+
+    /**
+     * ИД получателя.
+     * @var int
+     */
+    private $toId;
 
     /**
      * Сообщение.

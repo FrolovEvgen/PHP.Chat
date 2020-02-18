@@ -144,3 +144,7 @@ include_once('init.php');
         <script src="js/script.js"></script>
     </body>
 </html>
+<?php
+// Закрываем открытое соединение к БД.
+Engine::$DB->disconnect();
+?>

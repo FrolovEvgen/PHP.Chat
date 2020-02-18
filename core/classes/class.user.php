@@ -27,23 +27,25 @@ class User
     /**
      * Создать экземпляр класса <b>User</b>.
      *
-     * @param string $username Имя пользователя.
-     * @param string $iconname Название иконки пользователя.
+     * @param int $userId
+     * @param string $userName Имя пользователя.
+     * @param string $iconName Название иконки пользователя.
      * @param string $phone Телефон пользователя.
      * @param string $email ЕМейл пользователя.
      */
     public function __construct(
-        string $username,
-        string $iconname,
+        int $userId,
+        string $userName,
+        string $iconName,
         string $phone,
         string $email)
     {
         // "Генерируем" ИД пользователя.
-        $this->userId = User::$ID++;
+        $this->userId = $userId;
 
         // сохраняем данные полей.
-        $this->setUsername($username);
-        $this->setIconname($iconname);
+        $this->setUsername($userName);
+        $this->setIconname($iconName);
         $this->setEmail($email);
         $this->setPhone($phone);
     }
