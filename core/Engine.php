@@ -118,13 +118,19 @@ class Engine
      */
     public static function loadBlock(string $blockName, $context = null) {
         // Имя блока в нижний регистр.
-        $blockName = strtolower($blockName);
+        $blockFile = ROOT . DS . ENGINE . DS . BLOCKS . DS;
+        $blockFile .= strtolower($blockName);
+        $blockFile .= ".php";
 
         $result = null;
-
-        // Загрузить блок.
-        include(ROOT . DS . ENGINE . DS . BLOCKS . DS . $blockName . ".php");
-
+        
+        if (file_exists($blockFile)){
+            // Загрузить блок.
+            include($blockFile);
+        } else {
+            echo '<p style="color:maroon;font-weight:bold;">Failed load "' . 
+                    $blockName . '" block!</p>';
+        }
         return ($result);
     }
 
