@@ -153,6 +153,26 @@ class Engine
         // Вернуть результат и сохранить его в глобальной переменной.
         return($strResult);
     }
+    
+        /**
+     * Получить экранированную переменную из глобального массива
+     * $_POST
+     *
+     * @param string $strKey Параметр массива $_POST.
+     * @param string $defaultValue (по-умолчанию = "") Значение по-умолчанию,
+     *      если елемент в массиве $_POST отсутствует.
+     * @return string Экранированный элемент массива $_POST.
+     */
+    public static function POST($strKey, $defaultValue = ''): string {
+        // Если есть параметр с таким именем, то экранировать переменную.
+        if (isset($_POST[$strKey])) {
+            $strResult = self::_protectValue($_POST[$strKey]);
+        } else { // Если нет, установить значение по-умолчанию.
+            $strResult = $defaultValue;
+        }
+        // Вернуть результат и сохранить его в глобальной переменной.
+        return($strResult);
+    }
 
     /**
      * Получить экранированную переменную из глобального массива
