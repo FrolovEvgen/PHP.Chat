@@ -60,7 +60,7 @@ class Form {
      * 
      * @return string
      */
-    function generateForm() {
+    function generateForm($errors=[]) {
         
         $result = '<form';
         $result .= ' id="' . $this->id . '"';
@@ -69,6 +69,11 @@ class Form {
         $result .= '>';
         
         foreach($this->fields as $field) {
+            
+            if (isset($errors[$field["id"]])) {
+                $field["error"] = $errors[$field["id"]];
+            }
+            
             switch ($field["type"]) {
                 case ("header"): 
                     $result  .= $this->createHeader($field);
@@ -106,7 +111,12 @@ class Form {
      * @return string
      */
     private function createInput(array $field) {
-        $result = '<div class="form-group">';
+
+        if (isset($field["error"])) {
+            $result = '<div class="form-group has-error">';            
+        } else {
+            $result = '<div class="form-group">';
+        }       
 
         if (isset($field["label"])) {
             $result .= '<label for="' . $field["id"] . '">';
@@ -122,11 +132,16 @@ class Form {
         $result .= 'class="form-control" ';    
         $result .= 'type="' . $field["type"] . '" ';
         $result .= 'name="' . $field["id"] . '" ';
-        $result .= 'value="' . $field["value"] . '" >';
+        $result .= 'value="' . \WChat\Engine::POST($field["id"]) . '" >';
 
         if (isset($field["description"])) {
             $result .= '<small class="form-text text-muted">' . 
                     $field["description"] . '</small>';
+        }
+        
+        if (isset($field["error"])) {
+            $result .= '<small class="form-text text-error">' . 
+                    $field["error"] . '</small>';
         }
 
         $result .= '</div>';    

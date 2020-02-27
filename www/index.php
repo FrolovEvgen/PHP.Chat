@@ -17,10 +17,17 @@ define('SESSION_ID', session_id());
 // Подключаем инициализацию.
 include_once('init.php');
 
-$context = array(
-  'userRegistered'=>false,  
-  'pageName'=>\WChat\Engine::GET("page", $userAuth ? "chatPage" : "loginPage")
-);
+if (\WChat\Engine::GET("action") !== ''){
+    $context = \WChat\Engine::loadBlock("ProcessAction", array(
+      'userRegistered'=>false,  
+      'action'=>\WChat\Engine::GET("action")
+    ));     
+}else {
+    $context = array(
+      'userRegistered'=>false,  
+      'pageName'=>\WChat\Engine::GET("page", $userAuth ? "chatPage" : "loginPage")
+    );
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">

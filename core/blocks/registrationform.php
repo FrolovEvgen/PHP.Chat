@@ -62,6 +62,7 @@ $form->appendInput(array(
     "text" => "Register"
 ));
 
-echo '<div id="registrationform">'. $form->generateForm(). '</div>';
+echo '<div id="registrationform">'. 
+        $form->generateForm($context["errors"]). '</div>';
 
 
