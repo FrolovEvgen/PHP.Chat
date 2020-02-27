@@ -62,6 +62,19 @@ class UserList
             "SELECT * FROM `users` WHERE username LIKE '%$search%';");
         return $this->parseUserList($result);
     }
+
+    /**
+     * @param string $sid
+     * @return User|null
+     */
+    public function getUserBySID(string $sid) {
+        $sid = hex2bin($sid);
+        $result = Engine::$DB->execQuery(
+            "SELECT * FROM `users` WHERE sid=$sid;");
+        $userList = $this->parseUserList($result);
+        return count($userList) > 0 ? $userList[0] : null;
+    }
+
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------
@@ -84,12 +97,12 @@ class UserList
     }
 
     private function convertToUser($userData): User {
-        return new User(
-            (int) $userData["id"],
-            $userData["username"],
-            $userData["icon"],
-            $userData["phone"],
-            $userData["email"]
-        );
+        return (new User((int) $userData["id"]))
+                    ->setUsername($userData["username"])
+                    ->setIconname($userData["icon"])
+                    ->setPhone($userData["phone"])
+                    ->setCreated($userData["created"])
+                    ->setUpdated($userData["updated"])
+                    ->setLastactivity($userData["last_activity"]);
     }
 }

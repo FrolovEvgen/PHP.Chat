@@ -38,13 +38,21 @@ CREATE TABLE IF NOT EXISTS `users`
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Индекс пользователя',
     `username` varchar(64) NOT NULL DEFAULT '' COMMENT 'Логин пользователя',
     `email` varchar(64) NOT NULL DEFAULT '' COMMENT 'Почта пользователя',
+    `password` varchar(64) NOT NULL DEFAULT '' COMMENT 'Пароль пользователя',
     `phone` varchar(64) NOT NULL DEFAULT '' COMMENT 'Телефон пользователя',
     `icon` varchar(64) NOT NULL DEFAULT '' COMMENT 'Иконка пользователя',
     `created` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата создания пользователя',
+    `last_activity` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата последней активности',
+    `updated` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата обновления пользователя',
+    `cid` int(5) unsigned  NOT NULL DEFAULT 0 COMMENT 'ИД клиента пользователя',
+    `sid` int(5) unsigned  NOT NULL DEFAULT 0 COMMENT 'ИД сессии пользователя',
+
 
     PRIMARY KEY (`id`),
     UNIQUE KEY (`email`),
-    KEY (`username`)
+    KEY (`username`),
+    KEY (`cid`),
+    KEY (`sid`)
 )
 ENGINE = MyISAM
 DEFAULT CHARSET = utf8

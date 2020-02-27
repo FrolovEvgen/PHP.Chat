@@ -11,19 +11,19 @@ SET @TIME_NOW = UNIX_TIMESTAMP('2020-02-17 00:00:01');
 --
 
 INSERT INTO `users`
-(`id`, `username`, `email`, `phone`, `icon`, `created`)
+(`id`, `username`, `email`, `phone`, `icon`, `created`,`updated`)
 VALUES
-(NULL, "Петя", "petya@email.tst", "36456325462", "user1.jpg", @TIME_NOW),
-(NULL, "Вася", "vasya@email.tst", "54754785549", "user2.jpg", @TIME_NOW),
-(NULL, "Федя", "fedya@email.tst", "06856898658", "user3.jpg", @TIME_NOW),
-(NULL, "Вика", "vika80@email.tst", "3553534655", "user4.jpg", @TIME_NOW),
-(NULL, "Настя", "nastya12@email.tst", "4564765", "user5.jpg", @TIME_NOW),
-(NULL, "Юля", "yulja@email.tst", "567574757574", "user6.jpg", @TIME_NOW),
-(NULL, "Дима", "dima@email.tst", "965968958498", "user7.jpg", @TIME_NOW),
-(NULL, "Жорик", "zhora@email.tst", "6354635466", "user8.jpg", @TIME_NOW),
-(NULL, "Вадим", "vadim@email.tst", "3645635462", "user9.jpg", @TIME_NOW),
-(NULL, "Николай", "kolya@email.tst", "6546366", "user10.jpg", @TIME_NOW),
-(NULL, "Evgeniy", "evgen@email.tst", "3335355", "user11.jpg", @TIME_NOW);
+(NULL, "Петя", "petya@email.tst", "36456325462", "user1.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Вася", "vasya@email.tst", "54754785549", "user2.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Федя", "fedya@email.tst", "06856898658", "user3.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Вика", "vika80@email.tst", "3553534655", "user4.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Настя", "nastya12@email.tst", "4564765", "user5.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Юля", "yulja@email.tst", "567574757574", "user6.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Дима", "dima@email.tst", "965968958498", "user7.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Жорик", "zhora@email.tst", "6354635466", "user8.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Вадим", "vadim@email.tst", "3645635462", "user9.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Николай", "kolya@email.tst", "6546366", "user10.jpg", @TIME_NOW, @TIME_NOW),
+(NULL, "Evgeniy", "evgen@email.tst", "3335355", "user11.jpg", @TIME_NOW, @TIME_NOW);
 
 -- --------------------------------------------------------
 

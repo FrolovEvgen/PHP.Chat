@@ -81,7 +81,7 @@ class Engine
         self::$DB = new DBConnector();
 
         // Устанавливаем текущего пользователя.
-        self::$CURRENT_USER_ID = 11;
+        self::$CURRENT_USER_ID = null;
 
         // Получаем пользователя с кем ведем переписку, если есть.
         self::$SELECTED_USER_ID = self::GET("user_id");
@@ -112,16 +112,19 @@ class Engine
      * Загрузить блок по имени.
      *
      * @param string $blockName Имя блока.
-     * @return bool Результат операции.
+     * @param array $context
+     * @return mixed Результат операции.
      */
-    public static function loadBlock(string $blockName): bool {
+    public static function loadBlock(string $blockName, $context = null) {
         // Имя блока в нижний регистр.
         $blockName = strtolower($blockName);
+
+        $result = null;
 
         // Загрузить блок.
         include(ROOT . DS . ENGINE . DS . BLOCKS . DS . $blockName . ".php");
 
-        return (TRUE);
+        return ($result);
     }
 
     /**
@@ -133,7 +136,7 @@ class Engine
      *      если елемент в массиве $_GET отсутствует.
      * @return string Экранированный элемент массива $_GET.
      */
-    public static function GET($strKey, $defaultValue = '') {
+    public static function GET($strKey, $defaultValue = ''): string {
         // Если есть параметр с таким именем, то экранировать переменную.
         if (isset($_GET[$strKey])) {
             $strResult = self::_protectValue($_GET[$strKey]);
@@ -151,7 +154,7 @@ class Engine
      * @param string $strKey Параметр массива $_SESSION.
      * @param string $defaultValue (по-умолчанию = "") Значение по-умолчанию,
      *      если елемент в массиве $_SESSION  отсутствует
-     * @return string Экранированный элемент массива $_SESSION.
+     * @return mixed Экранированный элемент массива $_SESSION.
      */
     public static function SESSION($strKey, $defaultValue = '') {
         // Если есть параметр с таким именем, то экранировать переменную.
@@ -162,6 +165,34 @@ class Engine
         }
         // Вернуть результат и сохранить его в глобальной переменной.
         return($strResult);
+    }
+
+    /**
+     * Получить экранированную переменную из глобального массива
+     * $_COOKIE.
+     *
+     * @param string $strKey Параметр массива $_COOKIE.
+     * @param string $defaultValue (по-умолчанию = "") Значение по-умолчанию,
+     *      если елемент в массиве $_SESSION  отсутствует
+     * @return mixed Экранированный элемент массива $_SESSION.
+     */
+    public static function COOKIE($strKey, $defaultValue = '') {
+        // Если есть параметр с таким именем, то экранировать переменную.
+        if (isset($_COOKIE[$strKey])) {
+            $strResult = self::_protectValue($_COOKIE[$strKey]);
+        } else { // Если нет, установить значение по-умолчанию.
+            $strResult = $defaultValue;
+        }
+        // Вернуть результат и сохранить его в глобальной переменной.
+        return($strResult);
+    }
+
+    /**
+     * Проверить Ajax запрос.
+     * @return bool результат проверки.
+     */
+    public static function isAjax(): bool {
+        return(self::SESSION('HTTP_X_REQUESTED_WITH')==='XMLHttpRequest');
     }
 
     /**
@@ -178,6 +209,14 @@ class Engine
 
         return (stristr($target,  $search) !== false);
     }
+
+    public static function parse(string $template, array $map = []) {
+        foreach($map as $key=>$val){
+            $template = str_replace("@{$key}", $val, $template);
+        }
+        return $template . '';
+    }
+
 
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
