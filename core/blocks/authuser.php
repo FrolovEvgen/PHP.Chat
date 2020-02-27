@@ -18,8 +18,6 @@ if (!defined('SESSION_ID')) {
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
 
-namespace WChat;
-
 function updateUserAuthInfo() {
     $quesry = "
     SET @uid = (SELECT `id` FROM `users` WHERE `cid`=@{old_cid} LIMIT 1);

@@ -70,6 +70,7 @@ class Engine
         self::loadClass('UserList');
         self::loadClass('Message');
         self::loadClass('MessageList');
+        self::loadClass('Form');
 
         // Инициируем список пользователей.
         self::$USER_LIST = new UserList();
