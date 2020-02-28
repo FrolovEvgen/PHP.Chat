@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `users`
     `created` int unsigned  NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата создания пользователя',
     `last_activity` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата последней активности',
     `updated` int unsigned  NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата обновления пользователя',
-    `cid` int(5) unsigned  NOT NULL DEFAULT 0 COMMENT 'ИД клиента пользователя',
-    `sid` int(5) unsigned  NOT NULL DEFAULT 0 COMMENT 'ИД сессии пользователя',
+    `cid` varchar(37) NOT NULL DEFAULT '' COMMENT 'GUID клиента пользователя',
+    `sid` varchar(37) NOT NULL DEFAULT '' COMMENT 'GUID сессии пользователя',
 
     PRIMARY KEY (`id`),
     UNIQUE KEY (`email`),

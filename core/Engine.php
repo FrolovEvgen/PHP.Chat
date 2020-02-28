@@ -243,6 +243,14 @@ class Engine
         }
         return $template . '';
     }
+    
+    public static function getCurrentCid() {
+        return self::_asUid(hash('md5', SESSION_ID));
+    }
+    
+    public static function getCurrentSid() {
+        return self::_asUid(hash('md4', SESSION_ID));
+    }
 
 
     //--------------------------------------------------------------------------
@@ -276,6 +284,11 @@ class Engine
         }
         // Возвращаем экранированное значение.
         return ($value);
+    }
+    
+    private static function _asUid($value) {
+        return preg_replace("/^(.{8})(.{4})(.{4})(.{4})(.{12})$/", 
+                "$1-$2-$3-$4-$5", $value);
     }
 
     /**

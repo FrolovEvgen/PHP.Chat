@@ -56,7 +56,6 @@ class UserList
         return count($userList) > 0 ? $userList[0] : null;
     }
 
-
     /**
      * Получить всех пользователей.
      * @return array
@@ -75,18 +74,6 @@ class UserList
         $result = Engine::$DB->execQuery(
             "SELECT * FROM `users` WHERE `username` LIKE '%$search%';");
         return $this->parseUserList($result);
-    }
-
-    /**
-     * @param string $sid
-     * @return User|null
-     */
-    public function getUserBySID(string $sid) {
-        $sid = hex2bin($sid);
-        $result = Engine::$DB->execQuery(
-            "SELECT * FROM `users` WHERE `sid` = $sid;");
-        $userList = $this->parseUserList($result);
-        return count($userList) > 0 ? $userList[0] : null;
     }
     
     /**
@@ -112,6 +99,42 @@ class UserList
         $userList = $this->parseUserList($result);
         return (count($userList) > 0);        
     }
+    
+    public function checkSid() {
+        $sid = Engine::getCurrentSid();
+        $result = Engine::$DB->execQuery(
+            "SELECT * FROM `users` WHERE `sid` = '$sid';");
+        $userList = $this->parseUserList($result);
+        return (count($userList) > 0 ? $userList[0] : null); 
+    }
+    
+    public function checkCid() {
+        $base64Cid = Engine::COOKIE("cid");
+        
+        if ($base64Cid === '') {
+            return null;
+        }
+        
+        list($uid, $cid1, $cid2, $cid3, $cid4, $cid5) = split('-', $base64Cid);
+        
+        $result = Engine::$DB->execQuery(
+            "SELECT * FROM `users` WHERE "
+                . "`cid` = '$cid1-$cid2-$cid3-$cid4-$cid5' AND `id` = $uid;");
+        $userList = $this->parseUserList($result);
+        return (count($userList) > 0 ? $userList[0] : null);
+    }
+    
+    public function updateUserSession($uid) {
+        $sid = Engine::getCurrentSid();
+        $cid = Engine::getCurrentCid();
+        
+        setcookie("cid", base64_encode($uid . '-' . $cid), time() + (3600 * 24));
+        
+        $query = "UPDATE `users` SET `cid` = '$cid', `sid` = '$sid', "
+                . "`last_activity` = UNIX_TIMESTAMP() WHERE `id` = $uid;";
+        return Engine::$DB->execQuery(trim($query));
+    }
+
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------

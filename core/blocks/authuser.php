@@ -18,22 +18,20 @@ if (!defined('SESSION_ID')) {
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
 
-function updateUserAuthInfo() {
-    $quesry = "
-    SET @uid = (SELECT `id` FROM `users` WHERE `cid`=@{old_cid} LIMIT 1);
-    UPDATE `users` SET `cid`=@{new_cid}, `sid`=@{new_cid} WHERE `id`=@uid LIMIT 1;
-    SELECT @uid as id;
-    ";
-}
-
 $result = FALSE;
 
-$currentSid = Engine::SESSION("UID", null);
-if (!$currentSid) {
-    $currentCid = Engine::COOKIE("CID", null);
-    if ($currentId) {
+$currentUser = WChat\Engine::$USER_LIST->checkSid();
+if ($currentUser === null) {
+    $currentUser = WChat\Engine::$USER_LIST->checkCid();
+    if ($currentUser !== null) {
         $result = TRUE;
     }
 } else {
     $result = TRUE;
+}
+
+if ($result) {
+    $uid = $currentUser->getId();
+    WChat\Engine::$USER_LIST->updateUserSession($uid);
+    WChat\Engine::$CURRENT_USER_ID = $uid;
 }

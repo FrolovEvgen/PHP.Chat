@@ -53,13 +53,10 @@ if (count($errors) !== 0) {
             $result["ContentText"] .= "<p>" . $err["error"] . "</p>";
         }        
     } else {
-        
-                
-        
-        $result["userRegistered"] = false;
-        $result["pageName"] = "success";
-        $result["ContentHeader"] = "Login!";
-        $result["ContentText"] = '<p>Please, <a href="/?=loginPage"> Log In</a> '
-                . 'with you EMail and password.';    
+        $uid = $foundUser->getId();
+        WChat\Engine::$USER_LIST->updateUserSession($uid);
+        WChat\Engine::$CURRENT_USER_ID = $uid;
+        $result["userRegistered"] = true;
+        $result["pageName"] = "chatPage";
     }
 }
