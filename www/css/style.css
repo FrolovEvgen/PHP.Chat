@@ -10,7 +10,7 @@ html, body , html body {
 /* Общие стили страницы. */
 body {
     font-family: Tahoma, Verdana, sans-serif;
-    background: #eeee;
+    background: #eee;
     color: #303332;
     overflow: hidden;
 }
@@ -516,4 +516,150 @@ header {
 #user_modal .text_input .fieldname {
     width: 160px;
     font-weight: bold;
+}
+
+/*****************************************************************************
+ * Стили Модальных окон
+ *****************************************************************************/
+
+#loginform, #registrationform {
+    width: 400px;
+    margin: 80px auto 0 auto;
+}
+.form-group {
+    margin: 20px 10px;
+    height: 80px;
+}
+.form-group h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.form-group label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+.form-group .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-group .form-text {
+    display: block;
+    margin-top: .25rem;
+}
+.form-group .text-error {
+    color: #dc3545 !important;
+    display: none;
+}
+.form-group .text-muted {
+    color: #6c757d !important;
+}
+.form-group .small, small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.form-group.has-error label {
+    color: #dc3545;
+}
+.form-group.has-error input {
+    border-color: #dc3545;
+    background-color: #fee;
+}
+.form-group.has-error .text-error {
+    display: block;
+}
+.form-group.has-error .text-muted {
+    display: none;
+}
+.form-group.success label {
+    color: #28a745;
+}
+.form-group.success input {
+    border-color: #28a745;
+    background-color: #efe;
+}
+.form-group.success .form-text {
+    display: none;
+}
+
+.form-group button {
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 400;
+    outline: 0;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    cursor: pointer;
+}
+
+.btn-primary.focus,.btn-primary:focus {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    box-shadow: 0 0 0 .2rem rgba(38,143,255,.5)
+}
+
+.btn-primary.disabled,.btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(38,143,255,.5)
+}
+
+#errorPage {
+    color: #800000;
+}
+#successPage {
+    color: #008000;
+}
+#errorPage,
+#successPage {
+    width: 400px;
+    margin: 100px auto;    
+}
+#errorPage .content_header,
+#successPage .content_header {
+    margin: 15px auto;
+    text-transform: uppercase;
+    font-size: 120%;
+}
+#errorPage .content_text,
+#successPage .content_text {
+    margin: 5px auto;    
 }

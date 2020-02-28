@@ -1,27 +1,39 @@
 // Обработчик кннопки "Контакты".
 var btnOpenContact = document.querySelector("#btn_opencontact");
-btnOpenContact.onclick = function() {
-    var modal = document.querySelector("#contacts_modal");
-    modal.style.display = "block";
-};
+// Если кнопка есть, то цепляем обработчик.
+if (null !== btnOpenContact) {
+    btnOpenContact.onclick = function() {
+        var modal = document.querySelector("#contacts_modal");
+        modal.style.display = "block";
+    };  
+}
 // Обработчик кнопки закрытия окна "Контакты".
 var btnCloseContact = document.querySelector("#contacts_modal .cancel");
-btnCloseContact.onclick = function() {
-    var modal = document.querySelector("#contacts_modal");
-    modal.style.display = "none";
-};
+// Если кнопка есть, то цепляем обработчик.
+if (null !== btnCloseContact) {
+    btnCloseContact.onclick = function() {
+        var modal = document.querySelector("#contacts_modal");
+        modal.style.display = "none";
+    };
+}
 // Обработчик кнопки "Войти".
 var btnOpenLogin= document.querySelector("#btn_openlogin");
-btnOpenLogin.onclick = function() {
-    var modal = document.querySelector("#login_modal");
-    modal.style.display = "block";
-};
+// Если кнопка есть, то цепляем обработчик.
+if (null !== btnOpenLogin) {
+    btnOpenLogin.onclick = function() {
+        var modal = document.querySelector("#login_modal");
+        modal.style.display = "block";
+    };
+}
 // Обработчик кнопки закрытия окна "Вход".
 var btnCloseLogin = document.querySelector("#login_modal .cancel");
-btnCloseLogin.onclick = function() {
-    var modal = document.querySelector("#login_modal");
-    modal.style.display = "none";
-};
+// Если кнопка есть, то цепляем обработчик.
+if (null !== btnCloseLogin) {
+    btnCloseLogin.onclick = function() {
+        var modal = document.querySelector("#login_modal");
+        modal.style.display = "none";
+    };
+}
 // Обработчик кнопки закрытия окна "Пользователь".
 var btnCloseUser = document.querySelector("#user_modal .cancel");
 // Если кнопка есть, то цепляем обработчик.
@@ -72,7 +84,7 @@ contacts.forEach(function(contact){
         var userId = currentEl.dataset.id;
 
         // Если не совпадают.
-        if (userId != selectedId) {
+        if (userId !== selectedId) {
             // Снимаем выделение старого и выбираем нового пользователя.
             if (selectedEl !== null) {
                 selectedEl.classList.remove("selected");
@@ -91,8 +103,11 @@ contacts.forEach(function(contact){
     };
 });
 
-// добавляем поисковый компонент.
-var searchField = createSearchField();
-searchField.renderTo = "#search";
-searchField.show();
+var searchField = document.querySelector("#search");
+if (null !== searchField) {
+    // добавляем поисковый компонент.
+    var searchField = createSearchField();
+    searchField.renderTo = "#search";
+    searchField.show();
+}
 
