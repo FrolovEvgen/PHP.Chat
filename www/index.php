@@ -59,4 +59,4 @@ if (\WChat\Engine::GET("action") !== ''){
 <?php
 // Закрываем открытое соединение к БД.
 Engine::$DB->disconnect();
-?>
+
