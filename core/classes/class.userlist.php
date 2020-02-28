@@ -74,6 +74,23 @@ class UserList
         $userList = $this->parseUserList($result);
         return count($userList) > 0 ? $userList[0] : null;
     }
+    
+    /**
+     * 
+     * @param string $username
+     * @param string $email
+     * @param string $password
+     * @param string $phone
+     */
+    public function addUser(string $username, string $email, 
+            string $password, string $phone) { 
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = "INSERT INTO `users` 
+            (id,username,email,password,phone,icon,created,updated)              
+            VALUES  
+            (NULL,'$username','$email','$password','$phone','user1.jpg',UNIX_TIMESTAMP(),UNIX_TIMESTAMP());";
+        return Engine::$DB->execQuery(trim($query));
+    }
 
     //--------------------------------------------------------------------------
     // PROTECTED SECTION

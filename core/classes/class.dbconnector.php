@@ -79,10 +79,15 @@ class DBConnector
      * @return bool|mysqli_result   Результат выполнения.
      */
     public function execQuery(string $query) {
-        $result = mysqli_query($this->dbh, $query);
+        $result = @mysqli_query($this->dbh, trim($query));        
         return $result;
     }
-    //--------------------------------------------------------------------------
+    
+    function getDbh() {
+        return $this->dbh;
+    }
+
+        //--------------------------------------------------------------------------
     // PROTECTED SECTION
     //--------------------------------------------------------------------------
 

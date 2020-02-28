@@ -38,7 +38,6 @@ if (empty($password) || !is_string($password)) {
 
 if (empty($password2) || !is_string($password2)) {
     $errors["password2"] = "Not string format or empty.";
-
 }
 
 if ($password !== $password2) {
@@ -55,5 +54,23 @@ if (count($errors) !== 0) {
     $result["pageName"] = "registerPage";
     $result["errors"] = $errors;
 } else {
-    $query = "";    
+    $queryResult = WChat\Engine::$USER_LIST->addUser($username, $email, $password, $userphone);
+    if ($queryResult === false) {
+        $queryResult = mysqli_error_list(WChat\Engine::$DB->getDbh());
+        $result["userRegistered"] = false;
+        $result["pageName"] = "error";
+        $result["ContentHeader"] = "Failed!";
+        $result["ContentText"] = "";
+        foreach($queryResult as $err) {
+            $result["ContentText"] .= "<hr>";
+            $result["ContentText"] .= "<p>MySQL Error:" . $err["errno"] . "</p>";
+            $result["ContentText"] .= "<p>" . $err["error"] . "</p>";
+        }        
+    } else {
+        $result["userRegistered"] = false;
+        $result["pageName"] = "success";
+        $result["ContentHeader"] = "Registered!";
+        $result["ContentText"] = '<p>Please, <a href="/?=loginPage"> Log In</a> '
+                . 'with you EMail and password.';    
+    }
 }

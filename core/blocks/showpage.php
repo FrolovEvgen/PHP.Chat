@@ -44,7 +44,7 @@ if (!defined('SESSION_ID')) {
                 $pageName = "Chat"; 
                 break;
             case ("success"):
-                $pageName = "Success"; 
+                $pageName = "SuccessPage"; 
                 break;
             case ("error"):
                 $pageName = "ErrorPage"; 
