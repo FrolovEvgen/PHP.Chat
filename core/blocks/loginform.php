@@ -22,25 +22,26 @@ $form = new WChat\Form("loginuser", "/?action=login");
 
 $form->appendHeader(array(
     "type" => "header", 
-    "text" => "Reg"
+    "text" => "Вход"
     ));
 $form->appendInput(array(
     "type" => "email",
     "id" => "email",    
     "label" => "Email",
     "required" => true,
-    "description" => "Provide registration email." 
+    "description" => "Введите свой email."
 ));
 $form->appendInput(array(
     "type" => "password",
     "id" => "password",    
-    "label" => "Password",
-    "required" => true
+    "label" => "Пароль",
+    "required" => true,
+    "description" => "Введите свой пароль (мин. 8 симв.)."
 ));
 $form->appendInput(array(
     "type" => "button",
     "id" => "loginBtn",    
-    "text" => "Log In"
+    "text" => "Войти"
 ));
 
 echo '<div id="loginform">' . $form->generateForm() . '</div>';

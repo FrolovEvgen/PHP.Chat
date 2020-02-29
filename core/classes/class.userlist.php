@@ -3,6 +3,8 @@
 namespace WChat;
 
 // Попытка прочитать напрямую отправит в корень.
+use mysqli_result;
+
 if (!defined('SESSION_ID')) {
     header('Refresh: 0; url=/error404.html');
 }
@@ -76,12 +78,14 @@ class UserList
         return $this->parseUserList($result);
     }
     
+
     /**
-     * 
-     * @param string $username
-     * @param string $email
-     * @param string $password
-     * @param string $phone
+     * Добавить пользователя.
+     * @param string $username  Имя пользователя.
+     * @param string $email ЕМейл пользователя.
+     * @param string $password  Пароль пользователя.
+     * @param string $phone Телефон пользователя.
+     * @return bool|mysqli_result Результат операции.
      */
     public function addUser(string $username, string $email, 
             string $password, string $phone) { 
@@ -92,14 +96,23 @@ class UserList
                 . "UNIX_TIMESTAMP(), UNIX_TIMESTAMP());";
         return Engine::$DB->execQuery(trim($query));
     }
-    
-    public function checkEmail(string $email) {
+
+    /**
+     * Проверить есть ли email в базе.
+     * @param string $email ЕМейл пользователя.
+     * @return bool Результат проверки.
+     */
+    public function checkEmail(string $email): bool {
         $result = Engine::$DB->execQuery(
             "SELECT * FROM `users` WHERE `email` = '$email';");
         $userList = $this->parseUserList($result);
         return (count($userList) > 0);        
     }
-    
+
+    /**
+     * Проверить ИД сессии и вернуть пользователя, если есть.
+     * @return User|null
+     */
     public function checkSid() {
         $sid = Engine::getCurrentSid();
         $result = Engine::$DB->execQuery(
@@ -107,7 +120,11 @@ class UserList
         $userList = $this->parseUserList($result);
         return (count($userList) > 0 ? $userList[0] : null); 
     }
-    
+
+    /**
+     * Проверить ИД клиента и вернуть пользователя если есть.
+     * @return User|null
+     */
     public function checkCid() {
         $base64Cid = Engine::COOKIE("cid", "");
         
@@ -129,7 +146,12 @@ class UserList
         $userList = $this->parseUserList($result);
         return (count($userList) > 0 ? $userList[0] : null);
     }
-    
+
+    /**
+     * Обновить пользовательскую сессию.
+     * @param $uid
+     * @return bool|mysqli_result
+     */
     public function updateUserSession($uid) {
         $sid = Engine::getCurrentSid();
         $cid = Engine::getCurrentCid();
@@ -148,6 +170,14 @@ class UserList
         $query = "UPDATE `users` SET `cid` = '0', `sid` = '0', "
                 . "`last_activity` = UNIX_TIMESTAMP() WHERE `id` = $uid;";
         return Engine::$DB->execQuery(trim($query));
+    }
+
+    public function checkRegistered(): bool {
+        $result = Engine::$DB->execQuery(
+            "SELECT * FROM `users` WHERE 1 LIMIT 1;");
+        $userList = $this->parseUserList($result);
+
+        return (count($userList) > 0);
     }
 
     //--------------------------------------------------------------------------

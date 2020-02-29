@@ -51,10 +51,10 @@ if (!defined('SESSION_ID')) {
                 break;
             case ("error404"):
                 $pageName = "ErrorPage";
-                $context["ContentHeader"] = 'Page not found!';
-                $context["ContentText"] = '<p>The page you’re looking for can’t'
-                        . ' be found. Try to change search query or return to '
-                        . ' the <a href="/">home page.</a>.</p>';
+                $context["ContentHeader"] = 'Страница не найдена!';
+                $context["ContentText"] = '<p>Страница которую Вы запрашивали' .
+                    ' отсутствует. Попробуйте изменить запрос или вернуться ' .
+                    'на <a href="/">Главную страницу</a>.</p>';
                 break;
             default:  
                 $pageName = "Empty"; 

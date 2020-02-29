@@ -22,44 +22,44 @@ $form = new WChat\Form("registernew", "\?action=register");
         
 $form->appendHeader(array(
     "type" => "header", 
-    "text"=>"Reg"
+    "text"=>"Регистрация"
     ));
 $form->appendInput(array(
     "type" => "email",
     "id" => "email",    
     "label" => "Email",
     "required" => true,
-    "description" => "Provide registration email." 
+    "description" => "Введите свой эмейл."
 ));
 $form->appendInput(array(
     "type" => "password",
     "id" => "password",    
-    "label" => "Password",
+    "label" => "Пароль",
     "required" => true,
-    "description" => "Create strong password (min 8 chars)." 
+    "description" => "Создайте сложный пароль (мин. 8 симв.)."
 ));
 $form->appendInput(array(
     "type" => "password",
     "id" => "password2",    
-    "label" => "Confirm password",
+    "label" => "Повторите пароль.",
     "required" => true,
-    "description" => "Repeat your password." 
+    "description" => "Значения паролей должны совпасть."
 ));
 $form->appendInput(array(
     "type" => "text",
     "id" => "username",    
-    "label" => "User name",
+    "label" => "Имя пользователя.",
     "required" => true 
 ));
 $form->appendInput(array(
     "type" => "text",
     "id" => "userphone",    
-    "label" => "User phone"
+    "label" => "Телефон пользователя (опц.)"
 ));
 $form->appendInput(array(
     "type" => "button",
     "id" => "Submit",    
-    "text" => "Register"
+    "text" => "Зарегистрировать."
 ));
 
 echo '<div id="registrationform">'. 

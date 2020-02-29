@@ -23,42 +23,42 @@ array_push($menuItems, array(
     "href" => "/?page=chatPage",
     "id" => "linkChatPage",
     "registered" => true,
-    "caption" => "Chat"
+    "caption" => "Чат"
     ));
 
 array_push($menuItems, array(
     "href" => "#",
     "id" => "btnOpenContactList",
     "registered" => true,
-    "caption" => "Contacts"
+    "caption" => "Контакты"
     ));
 
 array_push($menuItems, array(
     "href" => "#",
     "id" => "btnOpenSettings",
     "registered" => true,
-    "caption" => "Settings"
+    "caption" => "Настройки"
     ));
 
 array_push($menuItems, array(
     "href" => "/?action=logout",
     "id" => "linkLogOut",
     "registered" => true,
-    "caption" => "Log Out"
+    "caption" => "Выход"
     ));
 
 array_push($menuItems, array(
     "href" => "/?page=registerPage",
     "id" => "linkRegisterPage",
     "registered" => false,
-    "caption" => "Register User"
+    "caption" => "Регистрация"
     ));
 
 array_push($menuItems, array(
     "href" => "/?page=loginPage",
     "id" => "linkLoginPage",
     "registered" => false,
-    "caption" => "Log In"
+    "caption" => "Вход"
     ));
 
 $container = '<ul>';

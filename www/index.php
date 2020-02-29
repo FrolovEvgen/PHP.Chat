@@ -17,7 +17,9 @@ define('SESSION_ID', session_id());
 // Подключаем инициализацию.
 include_once('init.php');
 
-$registered = Engine::loadBlock("AuthUser");
+$startPage = \WChat\Engine::$USER_LIST->checkRegistered() ? "loginPage" : "registerPage";
+
+$registered = \WChat\Engine::loadBlock("AuthUser");
 
 if (\WChat\Engine::GET("action") !== ''){
     $context = \WChat\Engine::loadBlock("ProcessAction", array(
@@ -27,7 +29,7 @@ if (\WChat\Engine::GET("action") !== ''){
 }else {
     $context = array(
       'userRegistered'=>$registered ,  
-      'pageName'=>\WChat\Engine::GET("page", $registered ? "chatPage" : "loginPage")
+      'pageName'=>\WChat\Engine::GET("page", $registered ? "chatPage" : $startPage)
     );
 }
 ?>

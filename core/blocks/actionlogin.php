@@ -25,13 +25,13 @@ $password = \WChat\Engine::POST("password");
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors["email"] = "E-mail адрес указан неверно.";
 } elseIf (!WChat\Engine::$USER_LIST->checkEmail($email)) { 
-    $errors["email"] = "User not found.";
+    $errors["email"] = "E-mail не найден.";
 }
 
 if (empty($password) || !is_string($password)) {
-    $errors["password"] = "Not string format or empty.";
+    $errors["password"] = "Пароль не является строкой или не заполнен.";
 } elseif (strlen($password) < 8) {
-    $errors["password"] = "Password must be 8 chars at least.";
+    $errors["password"] = "Пароль должен быть минимум 8 символов.";
 }
 
 $result = array();

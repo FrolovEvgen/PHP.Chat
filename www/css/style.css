@@ -58,7 +58,7 @@ header {
     display: list-item;
     padding: 13px 15px;
 }
-#menu ul li a {
+#menu ul li a{
     text-decoration: none;
     color: #303332;
 }
@@ -68,7 +68,7 @@ header {
     cursor: pointer;
 }
 /* Выбраный пункт меню. */
-#menu ul li.selected{
+#menu ul li.selected a{
     color: #548722;
     text-decoration: underline;
 }

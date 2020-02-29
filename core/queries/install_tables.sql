@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `users`
     `password` varchar(256) NOT NULL DEFAULT '' COMMENT 'Пароль пользователя',
     `phone` varchar(64) NOT NULL DEFAULT '' COMMENT 'Телефон пользователя',
     `icon` varchar(64) NOT NULL DEFAULT '' COMMENT 'Иконка пользователя',
-    `created` int unsigned  NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата создания пользователя',
+    `created` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата создания пользователя',
     `last_activity` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата последней активности',
-    `updated` int unsigned  NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата обновления пользователя',
+    `updated` int unsigned  NOT NULL DEFAULT 0 COMMENT 'Дата обновления пользователя',
     `cid` varchar(37) NOT NULL DEFAULT '' COMMENT 'GUID клиента пользователя',
     `sid` varchar(37) NOT NULL DEFAULT '' COMMENT 'GUID сессии пользователя',
 
