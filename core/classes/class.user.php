@@ -140,7 +140,8 @@ class User
     }
 
     /**
-     * @return DateTime
+     * Получить дату создания пользователя.
+     * @return DateTime ДатаВремя создания.
      */
     public function getCreated(): DateTime
     {
@@ -148,7 +149,8 @@ class User
     }
 
     /**
-     * @param int $created
+     * Сохранить дату создания пользователя.
+     * @param int $created ДатаВремя создания.
      * @return User
      * @throws Exception
      */
@@ -160,7 +162,8 @@ class User
     }
 
     /**
-     * @return DateTime
+     * Получить дату время обновления пользователя.
+     * @return DateTime ДатаВремя обносления данных.
      */
     public function getUpdated(): DateTime
     {
@@ -168,7 +171,8 @@ class User
     }
 
     /**
-     * @param int $updated
+     * Сохранить дату обновления пользователя.
+     * @param int $updated ДатаВремя обновления пользователя.
      * @return User
      * @throws Exception
      */
@@ -180,7 +184,8 @@ class User
     }
 
     /**
-     * @return DateTime
+     * Получить время последней активности пользователя.
+     * @return DateTime ДатаВремя последней активности.
      */
     public function getLastactivity(): DateTime
     {
@@ -188,7 +193,8 @@ class User
     }
 
     /**
-     * @param DateTime $lastactivity
+     * Сохранить время последней активности пользователя.
+     * @param int $lastactivity ДАтаВремя последней активности.
      * @return User
      * @throws Exception
      */
@@ -239,19 +245,19 @@ class User
     private $iconname;
 
     /**
-     * Временная метка сообщения.
+     * Временная метка создания
      * @var DateTime
      */
     private $created;
 
     /**
-     * Временная метка сообщения.
+     * Временная метка обновления.
      * @var DateTime
      */
     private $updated;
 
     /**
-     * Временная метка сообщения.
+     * Временная метка последней активности.
      * @var DateTime
      */
     private $lastactivity;

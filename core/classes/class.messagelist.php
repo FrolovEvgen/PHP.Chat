@@ -44,7 +44,7 @@ class MessageList
     /**
      * Получить последнее сообщение в чате.
      *
-     * @param int $chatId ИД чата.
+     * @param int $userId
      * @return Message | null Сообщение.
      */
     public function getLastMessage(int $userId) {
@@ -70,7 +70,14 @@ class MessageList
         return $this->parseMessageList($result);
     }
 
-    public function addMessage($fromId, $toId, $message) {
+    /**
+     * Добюавить сообщение.
+     * @param int $fromId ИД пользователя "От кого".
+     * @param int $toId ИД пользователя "Кому"
+     * @param string $message Текст сообщения.
+     * @return bool|\mysqli_result Результат операции.
+     */
+    public function addMessage(int $fromId, int $toId,string $message) {
         $query = "INSERT INTO `messages` " .
             "(`id`, `from_id`, `to_id`, `message`, `created`)".
             "VALUES (NULL, $fromId, $toId, '$message', UNIX_TIMESTAMP());";
@@ -85,7 +92,12 @@ class MessageList
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
 
-    private function parseMessageList($result): array {
+    /**
+     * Разобрать массив сообщений и сделать из них массив объектов.
+     * @param array $result Результат запроса БД.
+     * @return array
+     */
+    private function parseMessageList(array $result): array {
         $userList = [];
 
         $rows = mysqli_num_rows($result);
@@ -97,7 +109,13 @@ class MessageList
         return $userList;
     }
 
-    private function convertToMessage($messageData): Message {
+    /**
+     * Сконвертировать сообщение в объект.
+     * @param array $messageData Данные сообщения.
+     * @return Message Объект Сообщение.
+     * @throws \Exception
+     */
+    private function convertToMessage(array $messageData): Message {
         return new Message(
             $messageData["id"],
             $messageData["from_id"],

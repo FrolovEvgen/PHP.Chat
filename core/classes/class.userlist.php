@@ -34,10 +34,10 @@ class UserList
     /**
      * Получить пользователя по ИД.
      *
-     * @param $id int ИД пользователя.
+     * @param int $id ИД пользователя.
      * @return User Найденый пользователь или null.
      */
-    public function getUserById($id): User {
+    public function getUserById(int $id): User {
         $result = Engine::$DB->execQuery(
             "SELECT * FROM `users` WHERE `id` = $id;");
         $userList = $this->parseUserList($result);
@@ -126,52 +126,65 @@ class UserList
      * @return User|null
      */
     public function checkCid() {
+        // Получить ИД клиента.
         $base64Cid = Engine::COOKIE("cid", "");
-        
+        // Если его нет - выходим.
         if ($base64Cid === '') {
             return null;
         }
+        // Разбираем ИД Клиента.
         $base64Cid = base64_decode($base64Cid);
+        // Получаем ИД пользователя и компоненты ИД сессии.
         list($uid, $cid1, $cid2, $cid3, $cid4, $cid5) = explode('-', $base64Cid);
-        
+        // Кидаем запрос в базу
         $query = "SELECT * FROM `users` WHERE "
                 . "`cid` = '$cid1-$cid2-$cid3-$cid4-$cid5' AND `id` = $uid;";
-
         $result = Engine::$DB->execQuery($query);
-        
+        // нет данных - выходим.
         if ($result === false) {
             return null;
         }
-        
+        // Возвращаем пользователя, если есть.
         $userList = $this->parseUserList($result);
         return (count($userList) > 0 ? $userList[0] : null);
     }
 
     /**
      * Обновить пользовательскую сессию.
-     * @param $uid
-     * @return bool|mysqli_result
+     * @param int $uid ИД пользователя.
+     * @return bool|mysqli_result Результат операции.
      */
-    public function updateUserSession($uid) {
+    public function updateUserSession(int $uid) {
+        // Генерируем ИД серверной сессии.
         $sid = Engine::getCurrentSid();
+        // Генерируем ИД клиентской сессии
         $cid = Engine::getCurrentCid();
-        
+        // Сохранаяем клиентскую сессию.
         setcookie("cid", base64_encode($uid . '-' . $cid), time() + (3600 * 24));
-        
+        // Оюновляем данные в БД,
         $query = "UPDATE `users` SET `cid` = '$cid', `sid` = '$sid', "
                 . "`last_activity` = UNIX_TIMESTAMP() WHERE `id` = $uid;";
         return Engine::$DB->execQuery(trim($query));
     }
-    
-    public function clearSession($uid) {
-        
-        setcookie("cid", time()- (3600 * 24));
-        
+
+    /**
+     * Очистить сессию пользователя.
+     * @param int $uid ИД пользователя.
+     * @return bool|mysqli_result Результат операции.
+     */
+    public function clearSession(int $uid) {
+        // Чистим Килента от "ушей".
+        setcookie("cid", time() - (3600 * 24));
+        // Чистим данные сессий в БД.
         $query = "UPDATE `users` SET `cid` = '0', `sid` = '0', "
                 . "`last_activity` = UNIX_TIMESTAMP() WHERE `id` = $uid;";
         return Engine::$DB->execQuery(trim($query));
     }
 
+    /**
+     * Проверяем есть ли в БД вообще пользователи.
+     * @return bool
+     */
     public function checkRegistered(): bool {
         $result = Engine::$DB->execQuery(
             "SELECT * FROM `users` WHERE 1 LIMIT 1;");
@@ -188,20 +201,33 @@ class UserList
     // PRIVATE SECTION
     //--------------------------------------------------------------------------
 
-
-    private function parseUserList($result): array {
+    /**
+     * Обрабатываем результат в массив пользователей.
+     * @param mysqli_result $result Результат выборки.
+     * @return array Массив пользователей.
+     * @throws \Exception
+     */
+    private function parseUserList(mysqli_result $result): array {
+        // массив пользователей.
         $userList = [];
-
+        // Получаем количество строк.
         $rows = mysqli_num_rows($result);
+        // Обрабатываем данные.
         for ($i = 0; $i < $rows; $i++) {
             $userData = mysqli_fetch_assoc($result);
             array_push($userList, $this->convertToUser($userData));
         }
-
+        // Возвращаем список.
         return $userList;
     }
 
-    private function convertToUser($userData): User {
+    /**
+     * Создаем объект пользователя из массива данных.
+     * @param array $userData Массив данных.
+     * @return User Объект Пользователь.
+     * @throws \Exception
+     */
+    private function convertToUser(array $userData): User {
         return (new User((int) $userData["id"]))
                     ->setUsername($userData["username"])
                     ->setIconname($userData["icon"])

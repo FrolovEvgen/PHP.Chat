@@ -28,11 +28,11 @@ class Message
     /**
      * Создает экземпляр класса <b>Message</b>.
      *
-     * @param int $id
-     * @param int $fromId
-     * @param int $toId
+     * @param int $id ИД сообщения.
+     * @param int $fromId ИД пользователя "От".
+     * @param int $toId ИД пользователя "Кому.
      * @param string $message Сообщение пользователя.
-     * @param int $dateTime
+     * @param int $dateTime Дата/Время отправки.
      * @throws \Exception
      */
     public function __construct(int $id, int $fromId, int $toId, string $message, int $dateTime)
@@ -50,21 +50,23 @@ class Message
     //--------------------------------------------------------------------------
 
     /**
-     * @return int
+     * Получить ИД сообщения.
+     * @return int ИД сообщения.
      */
     public function getId(): int {
         return $this->id;
     }
 
     /**
-     * @return int
+     * Получить ИД отправителя.
+     * @return int ИД отправителя.
      */
     public function getFromId(): int {
         return $this->fromId;
     }
 
     /**
-     * Получить ИД пользователя.
+     * Получить ИД получаеля.
      *
      * @return int ИД пользователя.
      */
