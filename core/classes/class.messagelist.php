@@ -45,9 +45,9 @@ class MessageList
      * Получить последнее сообщение в чате.
      *
      * @param int $chatId ИД чата.
-     * @return Message Сообщение.
+     * @return Message | null Сообщение.
      */
-    public function getLastMessage(int $userId): Message {
+    public function getLastMessage(int $userId) {
         $result = Engine::$DB->execQuery(
             "SELECT A.* FROM (SELECT * FROM `messages` WHERE `from_id`=$userId OR `to_id`=$userId ORDER BY `created` DESC) A LIMIT 1");
         $messageList = $this->parseMessageList($result);

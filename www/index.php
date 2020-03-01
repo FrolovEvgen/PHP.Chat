@@ -46,16 +46,14 @@ if (\WChat\Engine::GET("action") !== ''){
         <!-- Подключаем стили. -->
         <link type="text/css" rel="stylesheet" href="css/reset.css" />
         <link type="text/css" rel="stylesheet" href="css/style.css" />
-    </head>
-    <body>
-        <?php Engine::loadBlock("ShowPage", $context); ?>
-        <!-- Модальное окно "Информация о пользователе" -->
-        <?php Engine::loadBlock("UserInfo"); ?>
+
         <!-- Загрузка скриптов -->
         <script src="js/utils/util.js"></script>
         <script src="js/mixins/mixin.core.js"></script>
         <script src="js/components/searchfield.js"></script>
-        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <?php \WChat\Engine::loadBlock("ShowPage", $context); ?>
     </body>
 </html>
 <?php

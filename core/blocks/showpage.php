@@ -63,3 +63,11 @@ if (!defined('SESSION_ID')) {
         WChat\Engine::loadBlock($pageName, $context);
     ?>
 </div>
+<?php
+if ($context["userRegistered"]) {
+    WChat\Engine::loadBlock("UserInfo");
+    WChat\Engine::loadBlock("ModalContacts");
+}
+?>
+<script src="js/script.js"></script>
+

@@ -44,5 +44,5 @@ $form->appendInput(array(
     "text" => "Войти"
 ));
 
-echo '<div id="loginform">' . $form->generateForm() . '</div>';
+echo '<div id="loginform">' . $form->generateForm($context["errors"]) . '</div>';
 

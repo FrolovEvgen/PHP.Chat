@@ -23,6 +23,7 @@ if ($userId != '') {
     $user = WChat\Engine::$USER_LIST->getUserById($userId);
 
     ?>
+    <!-- Модальное окно "Информация о пользователе" -->
     <div id="user_modal" class="modal">
     <div class="cover">
         <!-- Заголовок окна -->
@@ -54,6 +55,4 @@ if ($userId != '') {
         </div>
     </div>
     <?php
-} else {
-    echo "!";
 }

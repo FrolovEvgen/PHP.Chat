@@ -29,7 +29,7 @@ if (!defined('SESSION_ID')) {
         <div class="modal_content">
             <h3>Контакты</h3>
             <!-- Список контактов. -->
-            <?php Engine::loadBlock("ContactList"); ?>
+            <?php \WChat\Engine::loadBlock("ContactList"); ?>
         </div>
     </div>
 </div>
