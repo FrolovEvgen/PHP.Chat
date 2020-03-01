@@ -8,7 +8,7 @@ if (!defined('SESSION_ID')) {
 //	DESCRIPTIONS
 //------------------------------------------------------------------------------
 /**
- * Файл actionlogout - без описания
+ * Файл actionlogout - деавторизация пользователя.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created  28.02.2020 21:00
@@ -18,8 +18,15 @@ if (!defined('SESSION_ID')) {
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
 
+// Берем текущего пользователя.
 $uid = WChat\Engine::$CURRENT_USER_ID;
+
+// очищаем сессию.
 WChat\Engine::$USER_LIST->clearSession($uid);
+
+// Обнуляем пользователя.
 WChat\Engine::$CURRENT_USER_ID = null;
+
+// Отправляем на страницу Вход.
 $result["userRegistered"] = false;
 $result["pageName"] = "loginPage";

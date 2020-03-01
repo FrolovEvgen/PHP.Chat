@@ -8,7 +8,7 @@ if (!defined('SESSION_ID')) {
 //	DESCRIPTIONS
 //------------------------------------------------------------------------------
 /**
- * Файл modalcontacts - без описания
+ * Файл modalcontacts - модальное окно "Контакты".
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 27.02.2020 21:00

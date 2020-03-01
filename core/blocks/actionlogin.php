@@ -17,16 +17,12 @@ if (!defined('SESSION_ID')) {
 //------------------------------------------------------------------------------
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
-
 // Контейнер ошибок.
 $errors = array();
-
 // Получаем эмейл пользователя.
 $email = \WChat\Engine::POST("email");
-
 // Получаем пароль пользователя.
 $password = \WChat\Engine::POST("password");
-
 // Проверка эмейла на корректность.
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors["email"] = "E-mail адрес указан неверно.";
@@ -34,7 +30,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 } elseIf (!WChat\Engine::$USER_LIST->checkEmail($email)) { 
     $errors["email"] = "E-mail не найден.";
 }
-
 // Проверка пароля пользователя.
 if (empty($password) || !is_string($password)) {
     $errors["password"] = "Пароль не является строкой или не заполнен.";
@@ -42,7 +37,6 @@ if (empty($password) || !is_string($password)) {
 } elseif (strlen($password) < 8) {
     $errors["password"] = "Пароль должен быть минимум 8 символов.";
 }
-
 $result = array();
 // Если есть ошибки - отправляем обратно.
 if (count($errors) !== 0) {
@@ -52,13 +46,14 @@ if (count($errors) !== 0) {
 } else {
     // Авторизируем пользователя.
     $foundUser = WChat\Engine::$USER_LIST->authUser($email, $password);
-
+    // Если нет пользователя, то ошибка.
     if ($foundUser === null) {
-        $queryResult = mysqli_error_list(WChat\Engine::$DB->getDbh());
         $result["userRegistered"] = false;
         $result["pageName"] = "error";
-
+        // Проверяем ошибки БД.
+        $queryResult = mysqli_error_list(WChat\Engine::$DB->getDbh());
         if (count($queryResult) > 0) {
+            // Если есть то обрабатываем.
             $result["ContentHeader"] = "MYSQL Ошибки!";
             $result["ContentText"] = "";
             foreach($queryResult as $err) {
@@ -66,6 +61,7 @@ if (count($errors) !== 0) {
                 $result["ContentText"] .= "<p>MySQL Error:" . $err["errno"] . "</p>";
                 $result["ContentText"] .= "<p>" . $err["error"] . "</p>";
             }
+            // Иначе не верный пароль.
         } else {
             $result["ContentHeader"] = "Ошибка авторизации!";
             $result["ContentText"] = "<p>Вы ввели неправильный пароль, для пользователя '$email'!</p>";
@@ -73,9 +69,11 @@ if (count($errors) !== 0) {
         }
 
     } else {
+        // Сохраняем пользователя и обновляем сессию.
         $uid = $foundUser->getId();
         WChat\Engine::$USER_LIST->updateUserSession($uid);
         WChat\Engine::$CURRENT_USER_ID = $uid;
+        // Направляем на страницу чата.
         $result["userRegistered"] = true;
         $result["pageName"] = "chatPage";
     }

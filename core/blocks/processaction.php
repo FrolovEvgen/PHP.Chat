@@ -8,7 +8,7 @@ if (!defined('SESSION_ID')) {
 //	DESCRIPTIONS
 //------------------------------------------------------------------------------
 /**
- * Файл processaction - без описания
+ * Файл processaction - обработка различных действий
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 27.02.2020 21:00
@@ -18,15 +18,19 @@ if (!defined('SESSION_ID')) {
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
 switch($context["action"]) {
+    // Обработка данных формы "Вход".
     case ("login"):
         $result = \WChat\Engine::loadBlock("actionLogin");
         break;
+    // Обработка выхода.
     case ("logout"):
         $result = \WChat\Engine::loadBlock("actionLogout");
         break;
+    // Обработка данных формы "Регистрации".
     case ("register"):
         $result = \WChat\Engine::loadBlock("actionRegister");
         break;
+    // Обработка отправки сообщения.
     case ("saveMessage"):
         $result = \WChat\Engine::loadBlock("actionAddMessage", $context);
         break;

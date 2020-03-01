@@ -8,7 +8,7 @@ if (!defined('SESSION_ID')) {
 //	DESCRIPTIONS
 //------------------------------------------------------------------------------
 /**
- * Файл successpage - без описания
+ * Файл successpage - страница успешного сообщения.
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created 27.02.2020 21:00
@@ -18,10 +18,13 @@ if (!defined('SESSION_ID')) {
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
 ?>
+<!-- Каркас страницы -->
 <div id="successPage">
+    <!-- Заголовок сообщения. -->
     <div class="content_header">
         <h2><?=$context["ContentHeader"];?></h2>
-    </div>    
+    </div>
+    <!-- Текст сообщения. -->
     <div class="content_text">
         <?=$context["ContentText"];?>
     </div>

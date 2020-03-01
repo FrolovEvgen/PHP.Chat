@@ -17,19 +17,14 @@ if (!defined('SESSION_ID')) {
 //------------------------------------------------------------------------------
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
-
 // Получить свой ИД.
 $currentUserId = WChat\Engine::$CURRENT_USER_ID;
-
 // ИД получателя.
 $selectedUserId = WChat\Engine::$SELECTED_USER_ID;
-
 // Сообщение.
 $message = trim($context["message"]);
-
 // Добавляем в базу.
 WChat\Engine::$MESSAGE_LIST->addMessage($currentUserId, $selectedUserId, $message);
-
 // Перенаправляем на страницу чата.
 $result["userRegistered"] = true;
 $result["pageName"] = "chatPage";

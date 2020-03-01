@@ -8,7 +8,7 @@ if (!defined('SESSION_ID')) {
 //	DESCRIPTIONS
 //------------------------------------------------------------------------------
 /**
- * Файл loginform - без описания
+ * Файл loginform - форма авторизации
  * <br>
  * @author Frolov E. <frolov@amiriset.com>
  * @created  27.02.2020 21:00
@@ -17,13 +17,14 @@ if (!defined('SESSION_ID')) {
 //------------------------------------------------------------------------------
 //	IMPLEMENTS
 //------------------------------------------------------------------------------
-
+// Создаем Форму.
 $form = new WChat\Form("loginuser", "/?action=login");
-
+// Добавляем заголовок.
 $form->appendHeader(array(
     "type" => "header", 
     "text" => "Вход"
     ));
+// Добюавляем поле "Эмейл".
 $form->appendInput(array(
     "type" => "email",
     "id" => "email",    
@@ -31,6 +32,7 @@ $form->appendInput(array(
     "required" => true,
     "description" => "Введите свой email."
 ));
+// Добавляем поле "Пароль".
 $form->appendInput(array(
     "type" => "password",
     "id" => "password",    
@@ -38,11 +40,12 @@ $form->appendInput(array(
     "required" => true,
     "description" => "Введите свой пароль (мин. 8 симв.)."
 ));
+// Добавляем кнопку.
 $form->appendInput(array(
     "type" => "button",
     "id" => "loginBtn",    
     "text" => "Войти"
 ));
-
+// Отображаем форму.
 echo '<div id="loginform">' . $form->generateForm($context["errors"]) . '</div>';
 
