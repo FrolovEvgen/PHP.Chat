@@ -21,16 +21,20 @@ function createSearchField() {
      * Компонент поиска.
      * @type {Component}
      */
-    var element = mixinCore();
+    var component = mixinCore();
 
-    /**********************************************************************
-     * Добавим методы объекта
-     **********************************************************************/
+    /***************************************************************************
+     * Свойства
+     **************************************************************************/
+
+    /***************************************************************************
+     * Методы
+     **************************************************************************/
 
     /**
      * инициализация компонента.
      */
-    element.init = function() {
+    component.init = function() {
         // Создаем элемент и добавляем классы..
         this.htmlElement = Utils.createEl("div", "searchfield" );
         this.htmlElement.classList.add("textinput");
@@ -44,7 +48,7 @@ function createSearchField() {
     /**
      * Инициализация кнопки "Очистить".
      */
-    element.initClearButton = function() {
+    component.initClearButton = function() {
         var self, el = Utils.createEl("button");
 
         // добавляем классы к элементу.
@@ -70,7 +74,7 @@ function createSearchField() {
      * Обработчик нажатия кнопки "Очистить".
      * @param event
      */
-    element.onClearButtonClick = function(event) {
+    component.onClearButtonClick = function(event) {
         // Очищаем текстовое поле.
         this.clear();
     };
@@ -78,7 +82,7 @@ function createSearchField() {
     /**
      * Скрыть кнопку "Очистить".
      */
-    element.hideClearButton = function() {
+    component.hideClearButton = function() {
         var buttonEl =  this.getProperty("ClearButton");
 
         // Если кнопка видима, то скрыть.
@@ -90,7 +94,7 @@ function createSearchField() {
     /**
      * Показать кнопку "Очистить".
      */
-    element.showClearButton = function() {
+    component.showClearButton = function() {
         var buttonEl =  this.getProperty("ClearButton");
 
         // Если кнопка ранее скрыта, то отобразить.
@@ -102,7 +106,7 @@ function createSearchField() {
     /**
      * Инициализация текстового поля.
      */
-    element.initInputField = function() {
+    component.initInputField = function() {
         var self, el = Utils.createEl("input");
 
         // Добавляем классы к текстовому полю.
@@ -125,7 +129,7 @@ function createSearchField() {
      * Событие на ввод текста.
      * @param event
      */
-    element.onEnterText = function(event) {
+    component.onEnterText = function(event) {
        // Если в поле есть значение.
        if (this.getValue() !== '') {
            // Показать кнопку "Очистить".
@@ -139,7 +143,7 @@ function createSearchField() {
     /**
      * Инициализация кнопки "Поиск".
      */
-    element.initSearchButton = function() {
+    component.initSearchButton = function() {
         var self, el = Utils.createEl("button");
 
         // Добавляем стили к кнопке.
@@ -164,7 +168,7 @@ function createSearchField() {
      * Обработчик нажатия кнопки "Поиск".
      * @param event
      */
-    element.onSearchButtonClick = function(event) {
+    component.onSearchButtonClick = function(event) {
 
         // Делаем псевдо инпут.
         var inputEl = Utils.createEl("input", "search_text");
@@ -193,7 +197,7 @@ function createSearchField() {
     /**
      * Очистить поле.
      */
-    element.clear = function() {
+    component.clear = function() {
         this.setValue('');
         this.hideClearButton();
 
@@ -206,7 +210,7 @@ function createSearchField() {
      * Получить значение поля.
      * @returns {String}
      */
-    element.getValue = function() {
+    component.getValue = function() {
         var inputEl = this.getProperty("InputField");
         return (inputEl.value + '');
     };
@@ -215,7 +219,7 @@ function createSearchField() {
      * Задать значение поля.
      * @param {String} text вводимый текст.
      */
-    element.setValue = function(text) {
+    component.setValue = function(text) {
         if (isNullOrEmpty(text)) {
             this.hideClearButton();
             text = ''
@@ -228,12 +232,16 @@ function createSearchField() {
 
     };
 
+    /***************************************************************************
+     * Настройка/инициализация
+     **************************************************************************/
+
     // Инициируем компонент.
-    element.init();
+    component.init();
 
     // Заполняем поиск, если был запрос.
     var url = new URL(window.location.href);
-    element.setValue(url.searchParams.get("search_text"));
+    component.setValue(url.searchParams.get("search_text"));
 
-    return (element)
+    return (component)
 }
