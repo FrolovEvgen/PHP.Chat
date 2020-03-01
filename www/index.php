@@ -26,7 +26,13 @@ if (\WChat\Engine::GET("action") !== ''){
       'userRegistered'=>$registered ,  
       'action'=>\WChat\Engine::GET("action")
     ));     
-}else {
+} elseIf(\WChat\Engine::POST("message") !== '' && $registered) {
+    $context = \WChat\Engine::loadBlock("ProcessAction", array(
+        'userRegistered'=>$registered ,
+        'action'=>"saveMessage",
+        'message'=>\WChat\Engine::POST("message")
+    ));
+} else {
     $context = array(
       'userRegistered'=>$registered ,  
       'pageName'=>\WChat\Engine::GET("page", $registered ? "chatPage" : $startPage)
@@ -51,6 +57,7 @@ if (\WChat\Engine::GET("action") !== ''){
         <script src="js/utils/util.js"></script>
         <script src="js/mixins/mixin.core.js"></script>
         <script src="js/components/searchfield.js"></script>
+        <script src="js/components/chatmessage.js"></script>
     </head>
     <body>
         <?php \WChat\Engine::loadBlock("ShowPage", $context); ?>

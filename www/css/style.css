@@ -248,12 +248,12 @@ header {
     background: #eee;
     border-top: #ddd 1px solid;
 }
-#controls #format {
+#controls #formatControls {
     display: flex;
     padding: 10px;
 }
-#format #colorformat,
-#format #textformat {
+#formatControls #colorformat,
+#formatControls #textformat {
     padding: 0 10px;
 }
 

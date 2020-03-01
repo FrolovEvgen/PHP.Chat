@@ -32,29 +32,6 @@ if (!defined('SESSION_ID')) {
         <!-- Панель сообщений в чате. -->
         <?php WChat\Engine::loadBlock("MessageList"); ?>
         <!-- Панель оправки сообщения в чат. -->
-        <div id="controls">
-            <!-- Панель ввода сообщения. -->
-            <div id="fields" class="textinput">
-                <button class="squarebutton iconbutton cancel hidden">&nbsp;</button>
-                <input type="text" name="newmessage" class="textfield">
-                <button class="squarebutton iconbutton send">&nbsp;</button>
-            </div>
-            <!-- Панель форматирования. -->
-            <div id="format">
-                <!-- Форматирование цвета. -->
-                <div id="colorformat">
-                    <button class="squarebutton colorbutton black selected"></button>
-                    <button class="squarebutton colorbutton red"></button>
-                    <button class="squarebutton colorbutton green"></button>
-                    <button class="squarebutton colorbutton blue"></button>
-                </div>
-                <!-- Форматирование текста -->
-                <div id="textformat">
-                    <button class="squarebutton iconbutton bold">&nbsp;</button>
-                    <button class="squarebutton iconbutton italic">&nbsp;</button>
-                    <button class="squarebutton iconbutton underline">&nbsp;</button>
-                </div>
-            </div>
-        </div>
+        <div id="controls"></div>
     </div>
 </div>

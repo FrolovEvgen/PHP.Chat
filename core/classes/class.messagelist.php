@@ -49,7 +49,9 @@ class MessageList
      */
     public function getLastMessage(int $userId) {
         $result = Engine::$DB->execQuery(
-            "SELECT A.* FROM (SELECT * FROM `messages` WHERE `from_id`=$userId OR `to_id`=$userId ORDER BY `created` DESC) A LIMIT 1");
+            "SELECT A.* FROM (SELECT * FROM `messages`" .
+            " WHERE `from_id`=$userId OR `to_id`=$userId ORDER" .
+            " BY `created` DESC) A LIMIT 1");
         $messageList = $this->parseMessageList($result);
 
         return count($messageList) > 0 ? $messageList[0] : null;
@@ -66,6 +68,13 @@ class MessageList
         $result = Engine::$DB->execQuery(
             "SELECT * FROM `messages` WHERE message LIKE '%$search%';");
         return $this->parseMessageList($result);
+    }
+
+    public function addMessage($fromId, $toId, $message) {
+        $query = "INSERT INTO `messages` " .
+            "(`id`, `from_id`, `to_id`, `message`, `created`)".
+            "VALUES (NULL, $fromId, $toId, '$message', UNIX_TIMESTAMP());";
+        return Engine::$DB->execQuery(trim($query));
     }
 
     //--------------------------------------------------------------------------

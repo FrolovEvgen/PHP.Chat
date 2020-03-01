@@ -26,7 +26,10 @@ switch($context["action"]) {
         break;
     case ("register"):
         $result = \WChat\Engine::loadBlock("actionRegister");
-        break;            
+        break;
+    case ("saveMessage"):
+        $result = \WChat\Engine::loadBlock("actionAddMessage", $context);
+        break;
 }
 
 

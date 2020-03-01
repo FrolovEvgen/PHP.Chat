@@ -107,11 +107,17 @@ if (null !== contacts && contacts.length > 0) {
     });
 }
 
-var searchField = document.querySelector("#search");
-if (null !== searchField) {
+var searchBlock = document.querySelector("#search");
+if (null !== searchBlock) {
     // добавляем поисковый компонент.
     var searchField = createSearchField();
-    searchField.renderTo = "#search";
+    searchField.renderTo = searchBlock;
     searchField.show();
+}
+var controlsBlock = document.querySelector("#controls");
+if (null !== controlsBlock) {
+    var messageField = createChatMessage();
+    messageField.renderTo = controlsBlock;
+    messageField.show();
 }
 
