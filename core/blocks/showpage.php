@@ -32,22 +32,38 @@ if (!defined('SESSION_ID')) {
         </div>
     </header>                
     <?php
-        $pageName = null;
+    $pageName = null;
+    if ($context["userRegistered"]) {
         switch ($context["pageName"]) {
-            case ("loginPage"): 
-                $pageName = "LoginForm"; 
+            case ("chatPage"):
+                $pageName = "Chat";
                 break;
-            case ("registerPage"):  
-                $pageName = "RegistrationForm"; 
+        }
+    } else {
+        switch ($context["pageName"]) {
+            case ("loginPage"):
+                $pageName = "LoginForm";
                 break;
-            case ("chatPage"):  
-                $pageName = "Chat"; 
+            case ("registerPage"):
+                $pageName = "RegistrationForm";
                 break;
+            case ("chatPage"):
+                $pageName = "ErrorPage";
+                $context["ContentHeader"] = 'Не выполнен вход!';
+                $context["ContentText"] = '<p>Страница которую Вы запрашивали' .
+                    ' требует авторизации пользователя. Пожалуйста, перейдите ' .
+                    'на <a href="/">Главную страницу</a>.</p>';
+                break;
+        }
+    }
+
+    if ($pageName == null) {
+        switch ($context["pageName"]) {
             case ("success"):
-                $pageName = "SuccessPage"; 
+                $pageName = "SuccessPage";
                 break;
             case ("error"):
-                $pageName = "ErrorPage"; 
+                $pageName = "ErrorPage";
                 break;
             case ("error404"):
                 $pageName = "ErrorPage";
@@ -56,11 +72,12 @@ if (!defined('SESSION_ID')) {
                     ' отсутствует. Попробуйте изменить запрос или вернуться ' .
                     'на <a href="/">Главную страницу</a>.</p>';
                 break;
-            default:  
-                $pageName = "Empty"; 
+            default:
+                $pageName = "Empty";
                 break;
-        }        
-        WChat\Engine::loadBlock($pageName, $context);
+        }
+    }
+    WChat\Engine::loadBlock($pageName, $context);
     ?>
 </div>
 <?php

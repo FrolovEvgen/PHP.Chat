@@ -48,12 +48,12 @@ class UserList
      * Получить пользователя по EMail.
      *
      * @param $email string EMail пользователя.
-     * @return User Найденый пользователь или null.
+     * @return User|null Найденый пользователь или null.
      */
-    public function authUser(string $email, string $password): User {
+    public function authUser(string $email, string $password) {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $result = Engine::$DB->execQuery(
-            "SELECT * FROM `users` WHERE `email` = '$email';");
+            "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$password';");
         $userList = $this->parseUserList($result);
         return count($userList) > 0 ? $userList[0] : null;
     }
