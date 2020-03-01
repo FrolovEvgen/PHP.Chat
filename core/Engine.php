@@ -237,17 +237,31 @@ class Engine
         return (stristr($target,  $search) !== false);
     }
 
+    /**
+     * Обработка текстового шаблона.
+     * @param string $template Текстовій шаблон.
+     * @param array $map Массив Ключь/Значение.
+     * @return string Результат.
+     */
     public static function parse(string $template, array $map = []) {
         foreach($map as $key=>$val){
             $template = str_replace("@{$key}", $val, $template);
         }
         return $template . '';
     }
-    
+
+    /**
+     * Получить ИД клиента.
+     * @return string
+     */
     public static function getCurrentCid() {
         return self::_asUid(hash('md5', SESSION_ID));
     }
-    
+
+    /**
+     * Получить ИД сессии.
+     * @return string
+     */
     public static function getCurrentSid() {
         return self::_asUid(hash('md4', SESSION_ID));
     }
@@ -285,8 +299,13 @@ class Engine
         // Возвращаем экранированное значение.
         return ($value);
     }
-    
-    private static function _asUid($value) {
+
+    /**
+     * Сконвертирвать значение в GUID.
+     * @param string $value 32 16ричных символа .
+     * @return string GUID
+     */
+    private static function _asUid(string $value) {
         return preg_replace("/^(.{8})(.{4})(.{4})(.{4})(.{12})$/", 
                 "$1-$2-$3-$4-$5", $value);
     }
