@@ -517,28 +517,31 @@ header {
     width: 160px;
     font-weight: bold;
 }
-
 /*****************************************************************************
- * Стили Модальных окон
+ * Стили форм.
  *****************************************************************************/
-
+/* Общий стиль форм. */
 #loginform, #registrationform {
     width: 400px;
     margin: 80px auto 0 auto;
 }
+/* Стиль обертки полей. */
 .form-group {
     margin: 20px 10px;
     height: 80px;
 }
+/* Заголовок формы. */
 .form-group h3 {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
 }
+/* Название поля. */
 .form-group label {
     display: inline-block;
     margin-bottom: .5rem;
 }
+/* Текстовое поле. */
 .form-group .form-control {
     display: block;
     width: 100%;
@@ -554,22 +557,25 @@ header {
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.form-group .form-text {
-    display: block;
-    margin-top: .25rem;
-}
-.form-group .text-error {
-    color: #dc3545 !important;
-    display: none;
-}
-.form-group .text-muted {
-    color: #6c757d !important;
-}
+/* Стиль доп. поля. */
 .form-group .small, small {
     font-size: 80%;
     font-weight: 400;
 }
-
+.form-group .form-text {
+    display: block;
+    margin-top: .25rem;
+}
+/* Стиль поля описания. */
+.form-group .text-muted {
+    color: #6c757d !important;
+}
+/* Стиль поля ошибки. */
+.form-group .text-error {
+    color: #dc3545 !important;
+    display: none;
+}
+/* Стили поля с ошибкой. */
 .form-group.has-error label {
     color: #dc3545;
 }
@@ -583,6 +589,7 @@ header {
 .form-group.has-error .text-muted {
     display: none;
 }
+/* Стили поля с валидацией. */
 .form-group.success label {
     color: #28a745;
 }
@@ -593,7 +600,7 @@ header {
 .form-group.success .form-text {
     display: none;
 }
-
+/* Стили для кнопки. */
 .form-group button {
     border: 1px solid transparent;
     padding: .375rem .75rem;
@@ -611,37 +618,23 @@ header {
     background-color: #007bff;
     border-color: #007bff
 }
-
+/* Стиль кнопки с наведенным курсором. */
 .btn-primary:hover {
     color: #fff;
     background-color: #0069d9;
     border-color: #0062cc;
     cursor: pointer;
 }
-
+/* Стиль кнопки с фокусом. */
 .btn-primary.focus,.btn-primary:focus {
     color: #fff;
     background-color: #0069d9;
     border-color: #0062cc;
     box-shadow: 0 0 0 .2rem rgba(38,143,255,.5)
 }
-
-.btn-primary.disabled,.btn-primary:disabled {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff
-}
-
-.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf
-}
-
-.btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 .2rem rgba(38,143,255,.5)
-}
-
+/*****************************************************************************
+ * Стили страниц ошибки и сообщения.
+ *****************************************************************************/
 #errorPage {
     color: #800000;
 }
