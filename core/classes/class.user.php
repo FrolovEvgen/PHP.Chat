@@ -30,13 +30,14 @@ class User
     /**
      * Создать экземпляр класса <b>User</b>.
      *
-     * @param int $userId
+     * @param int $userId Ид пользователя.
+     * @param string $hpassword Хэш пароля.
      */
-    public function __construct(
-        int $userId)
+    public function __construct(int $userId, string $hpassword)
     {
         // "Генерируем" ИД пользователя.
         $this->userId = $userId;
+        $this->hpasswd = $hpassword;
     }
 
     //--------------------------------------------------------------------------
@@ -205,6 +206,15 @@ class User
         return $this;
     }
 
+    /**
+     * Проверить валидность пароля пользователя.
+     * @param string $password Пароль пользователя.
+     * @return bool Результат проверки.
+     */
+    public function isPassValid(string $password) {
+        return password_verify($password, $this->hpasswd);
+    }
+
 
     //--------------------------------------------------------------------------
     // PROTECTED SECTION
@@ -262,5 +272,9 @@ class User
      */
     private $lastactivity;
 
-
+    /**
+     * Хэш пароля.
+     * @var string
+     */
+    private $hpasswd;
 }

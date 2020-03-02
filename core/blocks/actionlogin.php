@@ -45,7 +45,7 @@ if (count($errors) !== 0) {
     $result["errors"] = $errors;
 } else {
     // Авторизируем пользователя.
-    $foundUser = WChat\Engine::$USER_LIST->authUser($email, $password);
+    $foundUser = WChat\Engine::$USER_LIST->authUser($email);
     // Если нет пользователя, то ошибка.
     if ($foundUser === null) {
         $result["userRegistered"] = false;
@@ -61,14 +61,9 @@ if (count($errors) !== 0) {
                 $result["ContentText"] .= "<p>MySQL Error:" . $err["errno"] . "</p>";
                 $result["ContentText"] .= "<p>" . $err["error"] . "</p>";
             }
-            // Иначе не верный пароль.
-        } else {
-            $result["ContentHeader"] = "Ошибка авторизации!";
-            $result["ContentText"] = "<p>Вы ввели неправильный пароль, для пользователя '$email'!</p>";
-            $result["ContentText"] .= "<p>Попробуйте заново: <a href=\"/?page=loginPage\">Войти</a>.</p>";
         }
 
-    } else {
+    } elseif ($foundUser->isPassValid($password)) {
         // Сохраняем пользователя и обновляем сессию.
         $uid = $foundUser->getId();
         WChat\Engine::$USER_LIST->updateUserSession($uid);
@@ -76,5 +71,12 @@ if (count($errors) !== 0) {
         // Направляем на страницу чата.
         $result["userRegistered"] = true;
         $result["pageName"] = "chatPage";
+    } else { // Если пароль не верен
+        $result["userRegistered"] = false;
+        $result["pageName"] = "error";
+        $result["ContentHeader"] = "Ошибка авторизации!";
+        $result["ContentText"] = "<p>Вы ввели неправильный пароль, для пользователя '$email'!</p>";
+        $result["ContentText"] .= "<p>Попробуйте заново: <a href=\"/?page=loginPage\">Войти</a>.</p>";
     }
+
 }

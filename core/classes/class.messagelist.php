@@ -3,6 +3,8 @@
 namespace WChat;
 
 // Попытка прочитать напрямую отправит в корень.
+use mysqli_result;
+
 if (!defined('SESSION_ID')) {
     header('Refresh: 0; url=/error404.html');
 }
@@ -33,6 +35,7 @@ class MessageList
      *
      * @param int $userId ИД чата.
      * @return array Список сообщений.
+     * @throws \Exception
      */
     public function getMessages(int $userId): array {
         $result = Engine::$DB->execQuery(
@@ -46,6 +49,7 @@ class MessageList
      *
      * @param int $userId
      * @return Message | null Сообщение.
+     * @throws \Exception
      */
     public function getLastMessage(int $userId) {
         $result = Engine::$DB->execQuery(
@@ -63,6 +67,7 @@ class MessageList
      *
      * @param string $search Шаблон поиска.
      * @return array Найденный сообщения.
+     * @throws \Exception
      */
     public function search (string $search): array {
         $result = Engine::$DB->execQuery(
@@ -75,7 +80,7 @@ class MessageList
      * @param int $fromId ИД пользователя "От кого".
      * @param int $toId ИД пользователя "Кому"
      * @param string $message Текст сообщения.
-     * @return bool|\mysqli_result Результат операции.
+     * @return bool|mysqli_result Результат операции.
      */
     public function addMessage(int $fromId, int $toId,string $message) {
         $query = "INSERT INTO `messages` " .
@@ -94,10 +99,11 @@ class MessageList
 
     /**
      * Разобрать массив сообщений и сделать из них массив объектов.
-     * @param array $result Результат запроса БД.
+     * @param mysqli_result $result Результат запроса БД.
      * @return array
+     * @throws \Exception
      */
-    private function parseMessageList(array $result): array {
+    private function parseMessageList(mysqli_result $result): array {
         $userList = [];
 
         $rows = mysqli_num_rows($result);

@@ -36,6 +36,7 @@ class UserList
      *
      * @param int $id ИД пользователя.
      * @return User Найденый пользователь или null.
+     * @throws \Exception
      */
     public function getUserById(int $id): User {
         $result = Engine::$DB->execQuery(
@@ -43,17 +44,17 @@ class UserList
         $userList = $this->parseUserList($result);
         return count($userList) > 0 ? $userList[0] : null;
     }
-    
+
     /**
      * Получить пользователя по EMail.
      *
      * @param $email string EMail пользователя.
      * @return User|null Найденый пользователь или null.
+     * @throws \Exception
      */
-    public function authUser(string $email, string $password) {
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $result = Engine::$DB->execQuery(
-            "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$password';");
+    public function authUser(string $email) {
+        $query = "SELECT * FROM `users` WHERE `email` = '$email';";
+        $result = Engine::$DB->execQuery($query);
         $userList = $this->parseUserList($result);
         return count($userList) > 0 ? $userList[0] : null;
     }
@@ -61,6 +62,7 @@ class UserList
     /**
      * Получить всех пользователей.
      * @return array
+     * @throws \Exception
      */
     public function getUsers(): array {
         $result = Engine::$DB->execQuery("SELECT * FROM `users` WHERE 1;");
@@ -71,6 +73,7 @@ class UserList
      * Поиск пользователей по имени.
      * @param string $search Шаблон имени.
      * @return array Найденные пользователи.
+     * @throws \Exception
      */
     public function search(string $search): array {
         $result = Engine::$DB->execQuery(
@@ -101,6 +104,7 @@ class UserList
      * Проверить есть ли email в базе.
      * @param string $email ЕМейл пользователя.
      * @return bool Результат проверки.
+     * @throws \Exception
      */
     public function checkEmail(string $email): bool {
         $result = Engine::$DB->execQuery(
@@ -112,6 +116,7 @@ class UserList
     /**
      * Проверить ИД сессии и вернуть пользователя, если есть.
      * @return User|null
+     * @throws \Exception
      */
     public function checkSid() {
         $sid = Engine::getCurrentSid();
@@ -124,6 +129,7 @@ class UserList
     /**
      * Проверить ИД клиента и вернуть пользователя если есть.
      * @return User|null
+     * @throws \Exception
      */
     public function checkCid() {
         // Получить ИД клиента.
@@ -184,6 +190,7 @@ class UserList
     /**
      * Проверяем есть ли в БД вообще пользователи.
      * @return bool
+     * @throws \Exception
      */
     public function checkRegistered(): bool {
         $result = Engine::$DB->execQuery(
@@ -228,7 +235,7 @@ class UserList
      * @throws \Exception
      */
     private function convertToUser(array $userData): User {
-        return (new User((int) $userData["id"]))
+        return (new User((int) $userData["id"], $userData["password"]))
                     ->setUsername($userData["username"])
                     ->setIconname($userData["icon"])
                     ->setPhone($userData["phone"])
