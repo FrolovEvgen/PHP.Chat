@@ -83,3 +83,21 @@ COMMENT = 'Сообщения пользователей.'
 AUTO_INCREMENT = 1;
 
 -- --------------------------------------------------------
+
+--
+-- Структура таблицы `friends`
+--
+
+DROP TABLE IF EXISTS `friends`;
+CREATE TABLE IF NOT EXISTS `friends`
+(
+    `user1_id` bigint(20) unsigned NOT NULL COMMENT 'Индекс пользователя 1',
+    `user2_id` bigint(20) unsigned NOT NULL COMMENT 'Индекс пользователя 2',
+
+    UNIQUE KEY (`user1_id`, `user2_id`)
+
+)
+    ENGINE = MyISAM
+    DEFAULT CHARSET = utf8
+    COMMENT = 'Друзья пользователя'
+    AUTO_INCREMENT = 1;

@@ -479,10 +479,18 @@ header {
 }
 #contacts_modal .info{
     padding: 5px;
+    width: 272px;
 }
 #contacts_modal .info p {
     line-height: 30px;
     height: 30px;
+}
+#contacts_modal .addbtn{
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    line-height: 30px;
+    text-align: center;
 }
 /* Стилизация окна "Вход". */
 #login_modal .cover {
