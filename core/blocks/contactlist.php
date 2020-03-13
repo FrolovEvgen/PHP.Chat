@@ -28,10 +28,13 @@ foreach ($userList as $user) {
 
     $component .= '<li><div class="contact">';
     $component .= '<div class="icon">';
-    $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '"></div>';
+    $component .= '<img alt="User Icon" class="photo" src="img/'.  $user->getIconname() . '">';
+    $component .= '</div>';
     $component .= '<div class="info">';
     $component .= '<p class="username">' . $user->getUsername(). '</p>';
-    $component .= '</div></div></li>';
+    $component .= '</div>';
+    $component .= '<div class="addbtn" data-user="' . $user->getId() . '">[+]</div>';
+    $component .= '</div></li>';
 }
 
 // Печатаем список.
