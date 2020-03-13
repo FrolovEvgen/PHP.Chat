@@ -65,6 +65,8 @@ class Engine
      */
     public static function init() {
         // Загружаем связанные классы.
+        self::loadClass('AbstractResult');
+        self::loadClass('ErrorResult');
         self::loadClass('DBConnector');
         self::loadClass('User');
         self::loadClass('UserList');
